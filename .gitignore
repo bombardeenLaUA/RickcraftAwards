@@ -1,0 +1,12 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/rickyAwards/.vs/rickyAwards
+/rickyAwards/library/obj
+/rickyAwards/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
+/rickyAwards/web/App_Data
+/rickyAwards/web/bin
+/rickyAwards/web/obj/Debug
+*.user
