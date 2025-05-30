@@ -10,3 +10,8 @@
 /rickyAwards/web/bin
 /rickyAwards/web/obj/Debug
 *.user
+/library/obj
+/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
+/web/App_Data
+/web/bin
+/web/obj/Debug
