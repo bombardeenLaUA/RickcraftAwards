@@ -67,10 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BaseDeDatos.mdf" />
-    <Content Include="App_Data\BaseDeDatos_log.ldf">
-      <DependentUpon>BaseDeDatos.mdf</DependentUpon>
-    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
