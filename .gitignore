@@ -16,3 +16,5 @@
 /web/bin
 /web/obj/Debug
 *.json
+/library/bin/Debug
+/packages
