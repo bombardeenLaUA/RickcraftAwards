@@ -71,16 +71,25 @@
     <Content Include="App_Data\BaseDeDatos_log.ldf">
       <DependentUpon>BaseDeDatos.mdf</DependentUpon>
     </Content>
-    <Content Include="Default.aspx" />
+    <Content Include="Inicio.aspx" />
+    <Content Include="LoginDiscord.aspx" />
+    <Content Include="Votaciones.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginDiscord.aspx.cs">
+      <DependentUpon>LoginDiscord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginDiscord.aspx.designer.cs">
+      <DependentUpon>LoginDiscord.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page.Master.cs">
       <DependentUpon>Page.Master</DependentUpon>
@@ -90,6 +99,13 @@
       <DependentUpon>Page.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Votaciones.aspx.cs">
+      <DependentUpon>Votaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Votaciones.aspx.designer.cs">
+      <DependentUpon>Votaciones.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

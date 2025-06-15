@@ -48,7 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CADCategorias.cs" />
+    <Compile Include="CADNominados.cs" />
+    <Compile Include="CADUsuarios.cs" />
+    <Compile Include="CADVotaciones.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="ENCategorias.cs" />
+    <Compile Include="ENNominados.cs" />
+    <Compile Include="ENUsuarios.cs" />
+    <Compile Include="ENVotaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

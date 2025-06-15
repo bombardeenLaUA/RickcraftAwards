@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="web.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="web.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* insertar fuente Minecrafter */ 
@@ -101,6 +101,6 @@
     <div class="container">
         <h1 class="título"><span translate="no">rickcraft awards</span></h1>
         <h1 class="mejores">Elige Los Mejores</h1>
-        <button class="minecraft-button">¡Vota Ya!</button>
+        <asp:Button ID="btnVotaYa" runat="server" OnClick="BotonVotar_Click" CssClass="minecraft-button" Text="¡Vota Ya!" />
     </div>
 </asp:Content>
