@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    internal class CADVotaciones
+    public class CADVotaciones
     {
+        private string constring;
+
+        public CADVotaciones()
+        {
+            constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+        }
 
     }
 }

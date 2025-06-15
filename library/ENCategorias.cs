@@ -6,8 +6,30 @@ using System.Threading.Tasks;
 
 namespace library
 {
-    internal class ENCategorias
+    public class ENCategorias
     {
-
+        private string _categoriaId;
+        public string CategoriaId
+        {
+            get { return _categoriaId; }
+            set { _categoriaId = value; }
+        }
+        private string _nombre;
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+        private string _descripcion;
+        public string Descripcion
+        {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+        public List<ENCategorias> ListarCategorias()
+        {
+            CADCategorias cadCategorias = new CADCategorias();
+            return cadCategorias.ListarCategorias();
+        }
     }
 }
