@@ -68,7 +68,7 @@ namespace web
             }
             else
             {
-                Response.Write("No se recibió el código de autorización de Discord.");
+                Response.Redirect("Inicio.aspx");
             }
         }
     }
