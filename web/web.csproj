@@ -74,6 +74,7 @@
     <Content Include="App_Data\BaseDeDatos_log.ldf">
       <DependentUpon>BaseDeDatos.mdf</DependentUpon>
     </Content>
+    <Content Include="files\fondo.mp4" />
     <Content Include="Inicio.aspx" />
     <Content Include="LoginDiscord.aspx" />
     <Content Include="Votaciones.aspx" />
@@ -111,6 +112,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="files\fonts\Minecrafter.Reg.ttf" />
     <None Include="packages.config" />
     <Content Include="Page.Master" />
     <None Include="Web.Debug.config">
@@ -141,7 +143,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58672</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44396/</IISUrl>
+          <IISUrl>https://localhost:44396/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

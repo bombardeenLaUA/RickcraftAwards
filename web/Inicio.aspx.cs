@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace web
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Inicio : System.Web.UI.Page
     {
         private ENUsuarios _usuario;
         public ENUsuarios Usuario

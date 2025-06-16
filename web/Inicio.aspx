@@ -1,10 +1,11 @@
-﻿<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+﻿<%@ Page Title="Rickcraft Awards | Inicio" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="web.Inicio" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             
             @font-face {
                 font-family: 'Minecrafter';
-                src: url('fonts/Minecrafter.Reg.ttf') format('truetype');
+                src: url('files/fonts/Minecrafter.Reg.ttf') format('truetype');
                 font-weight: normal;
                 font-style: normal;
             }
@@ -184,13 +185,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <video class="fondo" autoplay muted loop>
-        <source src="f.mp4" type="video/mp4">
+        <source src="files/fondo.mp4" type="video/mp4">
     </video>
 
     <div class="centrado">
         <h1 class="título"><span translate="no">rickcraft awards</span></h1>
         <h1 class="mejores">Elige Los Mejores:</h1>
-        <button class="minecraft-button">Vota Ya</button>
+        <asp:Button ID="BotonVotar" runat="server" OnClick="BotonVotar_Click" CssClass="minecraft-button" Text="Vota Ya"/>
     </div>
     <h1 class="creditos">Awards Web hecha por: zaxx, pako, rubenzuss y mohacker</h1>
 </asp:Content>
