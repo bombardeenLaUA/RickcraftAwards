@@ -75,12 +75,20 @@
       <DependentUpon>BaseDeDatos.mdf</DependentUpon>
     </Content>
     <Content Include="files\fondo.mp4" />
+    <Content Include="GraciasPorVotar.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="LoginDiscord.aspx" />
     <Content Include="Votaciones.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraciasPorVotar.aspx.cs">
+      <DependentUpon>GraciasPorVotar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GraciasPorVotar.aspx.designer.cs">
+      <DependentUpon>GraciasPorVotar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
