@@ -121,6 +121,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="files\fonts\Minecrafter.Reg.ttf" />
+    <Content Include="files\fonts\Minecraft.ttf" />
+    <Content Include="files\fonts\Minecrafter.Alt.ttf" />
     <None Include="packages.config" />
     <Content Include="Page.Master" />
     <None Include="Web.Debug.config">
