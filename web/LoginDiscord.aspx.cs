@@ -46,7 +46,7 @@ namespace web
 
                         dynamic userData = JsonConvert.DeserializeObject(userJson);
                         string discordId = userData.id;
-                        string nombre = userData.username;
+                        string nombre = userData.global_name ?? userData.username;
 
                         ENUsuarios usuarioLogeado = new ENUsuarios
                         {
