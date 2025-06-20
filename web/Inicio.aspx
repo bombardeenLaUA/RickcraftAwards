@@ -9,6 +9,12 @@
                 font-weight: normal;
                 font-style: normal;
             }
+            @font-face {
+                font-family: 'Minecraft';
+                src: url('files/fonts/Minecraft.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
 
             * {
                 box-sizing: border-box;
@@ -126,20 +132,15 @@
                 top: 2vh;
                 right: 2vw;
                 font-size: clamp(12px, 2.5vw, 20px); 
-                font-family: 'Minecrafter';
+                font-family: 'Minecraft';
                 letter-spacing: 1px;
-                
                 z-index: 2;
-                
-                -webkit-user-select: text;
-                -moz-user-select: text;
-                -ms-user-select: text;
                 user-select: text;
                 white-space: nowrap; 
                 text-align: right;
             }
-
             
+            /* móviles*/            
             @media (max-width: 480px) {
                 .creditos {
                     font-size: 10px;
@@ -157,8 +158,33 @@
                     font-size: 16px;
                 }
             }
+            /* tablets */
+            @media (max-width: 768px) {
+                .centrado { 
+                    padding: 1.5vh;
+                }
+                .minecraft-button { 
+                    font-size: 18px; padding: 12px 18px; 
+                }
+                .creditos { 
+                    font-size: 12px; 
+                }
+            }
+            /* portátiles/pantallas medianas */
+            @media (min-width: 769px) and (max-width: 1199px) {
 
+                .centrado { 
+                    padding: 2vh;
+                }
+                .minecraft-button { 
+                    font-size: 24px; padding: 14px 22px;
+                }
+                .creditos { 
+                    font-size: 16px;
+                }
+            }
            
+            /* pantallas grandes */
             @media (min-width: 1920px) {
                 h1.título {
                     font-size: 120px;
@@ -184,8 +210,8 @@
     <meta name="google" content="notranslate"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <video class="fondo" autoplay muted loop>
-        <source src="files/fondo.mp4" type="video/mp4">
+    <video class="fondo" autoplay muted loop aria-hidden="true">
+        <source src="files/spawn rickcraft.mp4" type="video/mp4">
     </video>
 
     <div class="centrado">
@@ -193,5 +219,5 @@
         <h1 class="mejores">Elige Los Mejores:</h1>
         <asp:Button ID="BotonVotar" runat="server" OnClick="BotonVotar_Click" CssClass="minecraft-button" Text="Vota Ya"/>
     </div>
-    <h1 class="creditos">Awards Web hecha por: zaxx, pako, rubenzuss y mohacker</h1>
+    <h1 class="creditos">Awards Web hecha por: zaxx, pako, rubenzuusss y mohacker</h1>
 </asp:Content>
