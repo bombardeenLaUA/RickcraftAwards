@@ -25,11 +25,23 @@ namespace library
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (DiscordId, Nombre) VALUES (@id_discord, @nombre)", con);
-                cmd.Parameters.AddWithValue("@id_discord", usuario.IdDiscord);
-                cmd.Parameters.AddWithValue("@nombre", usuario.Nombre);
+                SqlCommand cmdCheck = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE DiscordId = @id_discord", con);
+                cmdCheck.Parameters.AddWithValue("@id_discord", usuario.IdDiscord);
 
-                check = cmd.ExecuteNonQuery() > 0;
+                int count = (int)cmdCheck.ExecuteScalar();
+
+                if (count == 0)
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (DiscordId, Nombre) VALUES (@id_discord, @nombre)", con);
+                    cmd.Parameters.AddWithValue("@id_discord", usuario.IdDiscord);
+                    cmd.Parameters.AddWithValue("@nombre", usuario.Nombre);
+
+                    check = cmd.ExecuteNonQuery() > 0;
+                }
+                else
+                {
+                   check = true;
+                }
             }
             catch (Exception ex)
             {
