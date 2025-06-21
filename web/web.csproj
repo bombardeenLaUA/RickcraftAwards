@@ -75,7 +75,7 @@
       <DependentUpon>BaseDeDatos.mdf</DependentUpon>
     </Content>
     <Content Include="files\fondo.mp4" />
-    <Content Include="files\spawn rickcraft.mp4" />
+    <Content Include="files\spawn.mp4" />
     <Content Include="GraciasPorVotar.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="LoginDiscord.aspx" />
