@@ -211,7 +211,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <video class="fondo" autoplay muted loop aria-hidden="true">
-        <source src="files/spawn.mp4" type="video/mp4">
+        <source src="files/fondo puente.mp4" type="video/mp4">
     </video>
 
     <div class="centrado">
