@@ -29,19 +29,19 @@ namespace web
         }
         protected void BotonVotar_Click(object sender, EventArgs e)
         {
-            if (Usuario == null)
-            {
-                string clientId = "1379599717624713318";
-                string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
-                string scope = "identify";
-                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
+            //if (Usuario == null)
+            //{
+            //    string clientId = "1379599717624713318";
+            //    string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
+            //    string scope = "identify";
+            //    string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
 
-                Response.Redirect(url);
-            }
-            else
-            {
+            //    Response.Redirect(url);
+            //}
+            //else
+            //{
                 Response.Redirect("Votaciones.aspx");
-            }
+            //}
         }
     }
 }
