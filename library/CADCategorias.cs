@@ -15,27 +15,26 @@ namespace library
         {
             constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
         }
-        public List<ENCategorias> ListarCategorias()
+        public bool ObtenerCategoria(string id, ENCategorias categoria)
         {
-            List<ENCategorias> listaCategorias = new List<ENCategorias>();
+            bool check = false;
             SqlConnection con = new SqlConnection(constring);
 
             try
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT CategoriaId, Nombre, Descripcion FROM Categorias", con);
+                SqlCommand cmd = new SqlCommand("SELECT CategoriaId, Nombre, Descripcion FROM Categorias WHERE CategoriaId = @id", con);
+                cmd.Parameters.AddWithValue("@id", id);
+
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    ENCategorias cats = new ENCategorias
-                    {
-                        CategoriaId = reader["CategoriaId"].ToString(),
-                        Nombre = reader["Nombre"].ToString(),
-                        Descripcion = reader["Descripcion"].ToString()
-                    };
-                    listaCategorias.Add(cats);
+                    categoria.CategoriaId = reader["CategoriaId"].ToString();
+                    categoria.Nombre = reader["Nombre"].ToString();
+                    categoria.Descripcion = reader["Descripcion"].ToString();
+                    check = true;
                 }
             }
             catch (Exception ex)
@@ -46,7 +45,7 @@ namespace library
             {
                 con.Close();
             }
-            return listaCategorias;
+            return check;
         }
     }
 }

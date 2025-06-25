@@ -15,38 +15,37 @@ namespace library
         {
             constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
         }
-        public List<ENNominados> ObtenerNominados()
+        public bool ObtenerNominado(string id, ENNominados nominado)
         {
-            List<ENNominados> nominados = new List<ENNominados>();
+            bool check = false;
             SqlConnection con = new SqlConnection(constring);
 
             try
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT NominadoId, Nombre, CategoriaId FROM Nominados", con);
+                SqlCommand cmd = new SqlCommand("SELECT NominadoId, Nombre, CategoriaId FROM Nominados WHERE NominadoId = @id", con);
+                cmd.Parameters.AddWithValue("@id", id);
+
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    ENNominados nom = new ENNominados
-                    {
-                        NominadoId = reader["NominadoId"].ToString(),
-                        Nombre = reader["Nombre"].ToString(),
-                        CategoriaId = reader["CategoriaId"].ToString()
-                    };
-                    nominados.Add(nom);
+                    nominado.NominadoId = reader["NominadoId"].ToString();
+                    nominado.Nombre = reader["Nombre"].ToString();
+                    nominado.CategoriaId = reader["CategoriaId"].ToString();
+                    check = true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al abrir la conexión a la base de datos: " + ex.Message);
+                Console.WriteLine("Error al conectar a la base de datos: " + ex.Message);
             }
             finally
             {
                 con.Close();
             }
-            return nominados;
+            return check;
         }
     }
 }

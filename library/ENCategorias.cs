@@ -26,10 +26,10 @@ namespace library
             get { return _descripcion; }
             set { _descripcion = value; }
         }
-        public List<ENCategorias> ListarCategorias()
+        public bool ObtenerCategoria(string catId)
         {
             CADCategorias cadCategorias = new CADCategorias();
-            return cadCategorias.ListarCategorias();
+            return cadCategorias.ObtenerCategoria(catId, this);
         }
     }
 }

@@ -26,10 +26,10 @@ namespace library
             get { return _categoriaId; }
             set { _categoriaId = value; }
         }
-        public List<ENNominados> ListarNominados()
+        public bool ObtenerNominado(string nomId)
         {
             CADNominados cadNominados = new CADNominados();
-            return cadNominados.ObtenerNominados();
+            return cadNominados.ObtenerNominado(nomId, this);
         }
     }
 }
