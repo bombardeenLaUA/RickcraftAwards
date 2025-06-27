@@ -30,5 +30,10 @@ namespace library
             CADUsuarios cad = new CADUsuarios();
             return cad.ObtenerUsuario(idDiscord);
         }
+        public int VotosUsuario()
+        {
+            CADUsuarios cad = new CADUsuarios();
+            return cad.VotosUsuario(this);
+        }
     }
 }

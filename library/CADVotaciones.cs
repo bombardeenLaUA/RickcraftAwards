@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,15 +31,72 @@ namespace library
                 cmd.Parameters.AddWithValue("@nominado_id", votacion.NominadoId);
 
                 int filasAfectadas = cmd.ExecuteNonQuery();
+                check = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al agregar votación: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return check;
+        }
+        public bool EliminarVoto(ENVotaciones votacion)
+        {
+            bool check = false;
+            SqlConnection con = new SqlConnection(constring);
 
-                if (filasAfectadas > 0)
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("DELETE FROM Votos WHERE DiscordId = @discord_id AND CategoriaId = @categoria_id AND NominadoId = @nominado_id", con);
+                cmd.Parameters.AddWithValue("@discord_id", votacion.DiscordId);
+                cmd.Parameters.AddWithValue("@categoria_id", votacion.CategoriaId);
+                cmd.Parameters.AddWithValue("@nominado_id", votacion.NominadoId);
+
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                check = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar voto: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return check;
+        }
+        public bool ObtenerVoto(string discordId, string categoriaId, ENVotaciones votacion)
+        {
+            bool check = false;
+            SqlConnection con = new SqlConnection(constring);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Votos WHERE DiscordId = @discord_id AND CategoriaId = @categoria_id", con);
+                cmd.Parameters.AddWithValue("@discord_id", discordId);
+                cmd.Parameters.AddWithValue("@categoria_id", categoriaId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
+                    votacion.VotoId = reader["VotoId"].ToString();
+                    votacion.DiscordId = reader["DiscordId"].ToString();
+                    votacion.CategoriaId = reader["CategoriaId"].ToString();
+                    votacion.NominadoId = reader["NominadoId"].ToString();
                     check = true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar votación: " + ex.Message);
+                Console.WriteLine("Error al obtener voto: " + ex.Message);
             }
             finally
             {

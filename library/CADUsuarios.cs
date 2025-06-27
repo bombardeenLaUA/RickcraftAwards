@@ -86,5 +86,29 @@ namespace library
             }
             return usuario;
         }
+        public int VotosUsuario(ENUsuarios usuario)
+        {
+            int count = 0;
+            SqlConnection con = new SqlConnection(constring);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Votos WHERE DiscordId = @id_discord", con);
+                cmd.Parameters.AddWithValue("@id_discord", usuario.IdDiscord);
+
+                count = (int)cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al verificar si el usuario ha votado: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return count;
+        }
     }
 }

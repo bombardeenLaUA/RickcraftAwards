@@ -31,6 +31,7 @@ namespace web
         {
             //if (Usuario == null)
             //{
+            //    Session["LoginOrigen"] = "Votaciones";
             //    string clientId = "1379599717624713318";
             //    string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
             //    string scope = "identify";
@@ -40,7 +41,14 @@ namespace web
             //}
             //else
             //{
-                Response.Redirect("Votaciones.aspx");
+            //    if (Usuario.VotosUsuario() == 10) // 10 o las categorias que sean
+            //    {
+            //        Response.Redirect("GraciasPorVotar.aspx");
+            //}
+            //    else
+            //    {
+            Response.Redirect("Votaciones.aspx");
+            //    }
             //}
         }
     }

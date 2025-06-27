@@ -37,5 +37,15 @@ namespace library
             CADVotaciones cad = new CADVotaciones();
             return cad.AgregarVotacion(this);
         }
+        public bool EliminarVoto()
+        {
+            CADVotaciones cad = new CADVotaciones();
+            return cad.EliminarVoto(this);
+        }
+        public bool ObtenerVoto(string discordId, string categoriaId)
+        {
+            CADVotaciones cad = new CADVotaciones();
+            return cad.ObtenerVoto(discordId, categoriaId, this);
+        }
     }
 }

@@ -58,7 +58,17 @@ namespace web
                         ENUsuarios usuario = usuarioLogeado.ObtenerUsuario(discordId);
 
                         Session["Usuario"] = usuario;
-                        Response.Redirect("Inicio.aspx");
+
+                        string origen = Session["LoginOrigen"] as string;
+
+                        if (origen == "Votaciones")
+                        {
+                            Response.Redirect("Votaciones.aspx");
+                        }
+                        else
+                        {
+                            Response.Redirect("Inicio.aspx");
+                        }
                     }
                     catch (Exception ex)
                     {

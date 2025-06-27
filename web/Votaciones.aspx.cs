@@ -10,19 +10,7 @@ namespace web
 {
     public partial class Votaciones : System.Web.UI.Page
     {
-        private ENUsuarios _usuario;
-        public ENUsuarios Usuario
-        {
-            get
-            {
-                if (_usuario == null)
-                {
-                    _usuario = Session["Usuario"] as ENUsuarios;
-                }
-                return _usuario;
-            }
-            set { _usuario = value; }
-        }
+        public ENUsuarios Usuario => Session["Usuario"] as ENUsuarios;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,10 +20,16 @@ namespace web
         }
         private void CargarDatos()
         {
-            ViewState["indiceCategorias"] = 0;
-            CargarCategorias(0);
-            ViewState["indiceNominados"] = 0;
-            CargarNominados(0);
+            int indiceCategorias = Session["indiceCategorias"] as int? ?? 0;
+            int indiceNominados = Session["indiceNominados"] as int? ?? (indiceCategorias * 3);
+
+            //indiceCategorias = Usuario.VotosUsuario();
+
+            Session["indiceCategorias"] = indiceCategorias;
+            Session["indiceNominados"] = indiceNominados;
+
+            CargarCategorias(indiceCategorias);
+            CargarNominados(indiceNominados);
 
             // noseque.data.DataSource = listaCategorias;
             // updtPnl.DataBind();
@@ -46,8 +40,8 @@ namespace web
 
             if (!categoria.ObtenerCategoria((indice + 1).ToString())) // Siguiente categoria porque en la base de datos el id de la categoria, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1
             {
-                Response.Redirect("GraciasPorVotar.aspx");
-                return;
+            //    Response.Redirect("GraciasPorVotar.aspx");
+            //    return;
             }
 
             // Asignar los datos de la categoría a los controles de la interfaz
@@ -58,10 +52,10 @@ namespace web
             ENNominados nominado2 = new ENNominados();
             ENNominados nominado3 = new ENNominados();
 
-            // Siguientes 3 nominados porque en la base de datos el id del nominado, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1
+            // Siguientes 3 nominados porque en la base de datos el id del nominado, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1 (indice empieza en 0 por eso se le suma 1)
             nominado1.ObtenerNominado((indice + 1).ToString());
             nominado2.ObtenerNominado((indice + 2).ToString()); 
-            nominado3.ObtenerNominado((indice + 3).ToString()); 
+            nominado3.ObtenerNominado((indice + 3).ToString());
 
             // Asignar los datos de los nominados a los controles de la interfaz
         }
@@ -71,7 +65,7 @@ namespace web
             Button btnSeleccionado = (Button)sender;
             string nominadoId = btnSeleccionado.CommandArgument;
 
-            ViewState["nominadoSeleccionado"] = nominadoId;
+            Session["nominadoSeleccionado"] = nominadoId;
 
             ENNominados nominado = new ENNominados();
             nominado.NominadoId = nominadoId;
@@ -88,10 +82,10 @@ namespace web
                 return;
             }
 
-            int indiceCategoriaActual = ViewState["indiceCategorias"] as int? ?? 0;
-            int indiceNominadoActual = ViewState["indiceNominados"] as int? ?? 0;
+            int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
+            int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
 
-            string nominadoSeleccionadoId = ViewState["nominadoSeleccionado"]?.ToString();
+            string nominadoSeleccionadoId = Session["nominadoSeleccionado"]?.ToString();
 
             if (string.IsNullOrEmpty(nominadoSeleccionadoId))
             {
@@ -109,6 +103,62 @@ namespace web
             {
                 indiceCategoriaActual++;
                 indiceNominadoActual += 3;
+
+                Session["indiceCategorias"] = indiceCategoriaActual;
+                Session["indiceNominados"] = indiceNominadoActual;
+
+                CargarCategorias(indiceCategoriaActual);
+                CargarNominados(indiceNominadoActual);
+
+                // updtPnl.Update();
+
+                Session["nominadoSeleccionado"] = null;
+            }
+        }
+        protected void BotonAnterior_Click(object sender, EventArgs e)
+        {
+            // Ir a la categoría anterior y los nominados correspondientes, deshaciendo el voto que se realizó ahí y por tanto yendo 1 catqegoría atrás y 3 nominados atrás
+            if (Usuario == null)
+            {
+                Response.Redirect("LoginDiscord.aspx");
+                return;
+            }
+
+            int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
+            int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
+
+            if (indiceCategoriaActual == 0)
+            {
+                return;
+            }
+
+            indiceCategoriaActual--;
+            indiceNominadoActual -= 3;
+
+            ENVotaciones votoTemp = new ENVotaciones();
+            string nominadoVotadoId;
+
+            if (votoTemp.ObtenerVoto(Usuario.IdDiscord, (indiceCategoriaActual + 1).ToString()))
+            {
+                nominadoVotadoId = votoTemp.NominadoId;
+            }
+            else
+            {
+                return;
+            }
+
+            ENVotaciones voto = new ENVotaciones
+            {
+                DiscordId = Usuario.IdDiscord,
+                CategoriaId = (indiceCategoriaActual + 1).ToString(),
+                NominadoId = nominadoVotadoId
+            };
+
+            if (voto.EliminarVoto())
+            {
+                Session["nominadoSeleccionado"] = null;
+                Session["indiceCategorias"] = indiceCategoriaActual;
+                Session["indiceNominados"] = indiceNominadoActual;
 
                 CargarCategorias(indiceCategoriaActual);
                 CargarNominados(indiceNominadoActual);
