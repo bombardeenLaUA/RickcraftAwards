@@ -20,10 +20,8 @@ namespace web
         }
         private void CargarDatos()
         {
-            int indiceCategorias = Session["indiceCategorias"] as int? ?? 0;
-            int indiceNominados = Session["indiceNominados"] as int? ?? (indiceCategorias * 3);
-
-            //indiceCategorias = Usuario.VotosUsuario();
+            int indiceCategorias = Usuario.VotosUsuario();
+            int indiceNominados = indiceCategorias * 3;
 
             Session["indiceCategorias"] = indiceCategorias;
             Session["indiceNominados"] = indiceNominados;
@@ -84,7 +82,6 @@ namespace web
 
             int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
             int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
-
             string nominadoSeleccionadoId = Session["nominadoSeleccionado"]?.ToString();
 
             if (string.IsNullOrEmpty(nominadoSeleccionadoId))
