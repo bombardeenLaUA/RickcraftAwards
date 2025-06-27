@@ -32,5 +32,10 @@ namespace library
             get { return _nominadoId; }
             set { _nominadoId = value; }
         }
+        public bool AgregarVotacion()
+        {
+            CADVotaciones cad = new CADVotaciones();
+            return cad.AgregarVotacion(this);
+        }
     }
 }

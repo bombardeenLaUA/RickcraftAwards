@@ -10,6 +10,19 @@ namespace web
 {
     public partial class Votaciones : System.Web.UI.Page
     {
+        private ENUsuarios _usuario;
+        public ENUsuarios Usuario
+        {
+            get
+            {
+                if (_usuario == null)
+                {
+                    _usuario = Session["Usuario"] as ENUsuarios;
+                }
+                return _usuario;
+            }
+            set { _usuario = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,11 +32,10 @@ namespace web
         }
         private void CargarDatos()
         {
-            ViewState["indiceNominados"] = 0;
-            CargarNominados(0);
-
             ViewState["indiceCategorias"] = 0;
             CargarCategorias(0);
+            ViewState["indiceNominados"] = 0;
+            CargarNominados(0);
 
             // noseque.data.DataSource = listaCategorias;
             // updtPnl.DataBind();
@@ -32,7 +44,11 @@ namespace web
         {
             ENCategorias categoria = new ENCategorias();
 
-            categoria.ObtenerCategoria((indice + 1).ToString());
+            if (!categoria.ObtenerCategoria((indice + 1).ToString())) // Siguiente categoria porque en la base de datos el id de la categoria, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1
+            {
+                Response.Redirect("GraciasPorVotar.aspx");
+                return;
+            }
 
             // Asignar los datos de la categoría a los controles de la interfaz
         }
@@ -42,9 +58,10 @@ namespace web
             ENNominados nominado2 = new ENNominados();
             ENNominados nominado3 = new ENNominados();
 
+            // Siguientes 3 nominados porque en la base de datos el id del nominado, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1
             nominado1.ObtenerNominado((indice + 1).ToString());
-            nominado2.ObtenerNominado((indice + 2).ToString());
-            nominado3.ObtenerNominado((indice + 3).ToString());
+            nominado2.ObtenerNominado((indice + 2).ToString()); 
+            nominado3.ObtenerNominado((indice + 3).ToString()); 
 
             // Asignar los datos de los nominados a los controles de la interfaz
         }
@@ -53,6 +70,8 @@ namespace web
             // Guardar el nominado en el que se ha hecho clic y rellenar el boton correspondiente con un visible = true del relleno interno
             Button btnSeleccionado = (Button)sender;
             string nominadoId = btnSeleccionado.CommandArgument;
+
+            ViewState["nominadoSeleccionado"] = nominadoId;
 
             ENNominados nominado = new ENNominados();
             nominado.NominadoId = nominadoId;
@@ -63,18 +82,39 @@ namespace web
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
             // Guardar el voto en la base de datos y pasar a la siguiente categoría con los siguientes nominados
-            ENCategorias categorias = new ENCategorias();
-            ENNominados nominados = new ENNominados();
+            if (Usuario == null)
+            {
+                Response.Redirect("LoginDiscord.aspx");
+                return;
+            }
 
-            int indiceCategorias = (int)ViewState["indiceCategorias"];
-            int indiceNominados = (int)ViewState["indiceNominados"];
-            indiceCategorias++;
-            indiceNominados += 3;
+            int indiceCategoriaActual = ViewState["indiceCategorias"] as int? ?? 0;
+            int indiceNominadoActual = ViewState["indiceNominados"] as int? ?? 0;
 
-            CargarCategorias(indiceCategorias);
-            CargarNominados(indiceNominados);
+            string nominadoSeleccionadoId = ViewState["nominadoSeleccionado"]?.ToString();
 
-            // updtPnl.Update();
+            if (string.IsNullOrEmpty(nominadoSeleccionadoId))
+            {
+                return;
+            }
+
+            ENVotaciones voto = new ENVotaciones
+            {
+                DiscordId = Usuario.IdDiscord,
+                CategoriaId = (indiceCategoriaActual + 1).ToString(),
+                NominadoId = nominadoSeleccionadoId
+            };
+
+            if (voto.AgregarVotacion())
+            {
+                indiceCategoriaActual++;
+                indiceNominadoActual += 3;
+
+                CargarCategorias(indiceCategoriaActual);
+                CargarNominados(indiceNominadoActual);
+
+                // updtPnl.Update();
+            }
         }
     }
 }
