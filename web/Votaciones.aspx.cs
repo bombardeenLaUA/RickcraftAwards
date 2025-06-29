@@ -21,7 +21,7 @@ namespace web
         private void CargarDatos()
         {
             // int indiceCategorias = Usuario.VotosUsuario();
-            int indiceCategorias = 0; // Auxiliar (el bueno es el de arriba)
+            int indiceCategorias = 0; // Auxiliar (el bueno es el de la linea de arriba)
             int indiceNominados = indiceCategorias * 3;
 
             Session["indiceCategorias"] = indiceCategorias;
