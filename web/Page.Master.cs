@@ -29,41 +29,44 @@ namespace web
             if (Usuario == null)
             {
                 // btnLogin.Visible = true;
-                // user.Vble = false;
+                // userPfp.Visible = false;
+                // userNombre.Visible = false;
+                // btnCerrarSesion.Visible = false;
             }
             else
             {
                 // btnLogin.Visible = false;
-                // user.Vble = true;
+                // userPfp.Visible = true;
+                // userNombre.Visible = true;
+                // btnCerrarSesion.Visible = true;
             }
         }
         protected void BotonLogin_Click(object sender, EventArgs e)
         {
-            //if (Session["Usuario"] == null)
-            //{
-            //    Session["LoginOrigen"] = "Inicio";
-            //    string clientId = "1379599717624713318";
-            //    string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
-            //    string scope = "identify";
-            //    string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
-            //    Response.Redirect(url);
-            //}
+            if (Usuario == null)
+            {
+                Session["LoginOrigen"] = "Inicio";
+                string clientId = "1379599717624713318";
+                string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
+                string scope = "identify";
+                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
+                Response.Redirect(url);
+            }
         }
-        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        protected void BotonCerrarSesion_Click(object sender, EventArgs e)
         {
-            //Session.Clear();
-            //Session.Abandon();
+            Session.Clear();
+            Session.Abandon();
 
-            //HttpCookie sessionCookie = new HttpCookie("ASP.NET_SessionId", "")
-            //{
-            //    HttpOnly = true,
-            //    Secure = Request.IsSecureConnection,
-            //    Path = "/",
-            //    Expires = DateTime.Now.AddYears(-1)
-            //};
-            //Response.Cookies.Add(sessionCookie);
-
-            //Response.Redirect("Inicio.aspx");
+            HttpCookie sessionCookie = new HttpCookie("ASP.NET_SessionId", "")
+            {
+                HttpOnly = true,
+                Secure = Request.IsSecureConnection,
+                Path = "/",
+                Expires = DateTime.Now.AddYears(-1)
+            };
+            Response.Cookies.Add(sessionCookie);
+            Response.Redirect("Inicio.aspx");
         }
     }
 }

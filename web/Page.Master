@@ -4,7 +4,9 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" href="files/rickcraft.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="files/rickcraft.ico" type="image/x-icon" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

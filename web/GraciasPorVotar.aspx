@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="GraciasPorVotar.aspx.cs" Inherits="web.GraciasPorVotar" %>
+﻿<%@ Page Title="Rickcraft Awards | Votación Realizada" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="GraciasPorVotar.aspx.cs" Inherits="web.GraciasPorVotar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
 

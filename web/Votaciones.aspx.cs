@@ -20,7 +20,8 @@ namespace web
         }
         private void CargarDatos()
         {
-            int indiceCategorias = Usuario.VotosUsuario();
+            // int indiceCategorias = Usuario.VotosUsuario();
+            int indiceCategorias = 0; // Auxiliar (el bueno es el de arriba)
             int indiceNominados = indiceCategorias * 3;
 
             Session["indiceCategorias"] = indiceCategorias;
@@ -36,7 +37,7 @@ namespace web
         {
             ENCategorias categoria = new ENCategorias();
 
-            if (!categoria.ObtenerCategoria((indice + 1).ToString())) // Siguiente categoria porque en la base de datos el id de la categoria, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1
+            if (!categoria.ObtenerCategoria((indice + 1).ToString()))
             {
             //    Response.Redirect("GraciasPorVotar.aspx");
             //    return;
@@ -50,7 +51,6 @@ namespace web
             ENNominados nominado2 = new ENNominados();
             ENNominados nominado3 = new ENNominados();
 
-            // Siguientes 3 nominados porque en la base de datos el id del nominado, que es lo que esta referenciando el indice, esta como un int identity que suma de 1 en 1 partiendo de 1 (indice empieza en 0 por eso se le suma 1)
             nominado1.ObtenerNominado((indice + 1).ToString());
             nominado2.ObtenerNominado((indice + 2).ToString()); 
             nominado3.ObtenerNominado((indice + 3).ToString());
@@ -59,21 +59,16 @@ namespace web
         }
         protected void BotonSeleccion_Click(object sender, EventArgs e)
         {
-            // Guardar el nominado en el que se ha hecho clic y rellenar el boton correspondiente con un visible = true del relleno interno
             Button btnSeleccionado = (Button)sender;
             string nominadoId = btnSeleccionado.CommandArgument;
 
             Session["nominadoSeleccionado"] = nominadoId;
 
-            ENNominados nominado = new ENNominados();
-            nominado.NominadoId = nominadoId;
-            nominado.ObtenerNominado(nominadoId);
-
             // btnSeleccion.Visible = true;
+            // glowBordes.Visible = true;
         }
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
-            // Guardar el voto en la base de datos y pasar a la siguiente categoría con los siguientes nominados
             if (Usuario == null)
             {
                 Response.Redirect("LoginDiscord.aspx");
@@ -96,25 +91,23 @@ namespace web
                 NominadoId = nominadoSeleccionadoId
             };
 
-            if (voto.AgregarVotacion())
+            if (voto.AgregarVoto())
             {
                 indiceCategoriaActual++;
                 indiceNominadoActual += 3;
 
                 Session["indiceCategorias"] = indiceCategoriaActual;
                 Session["indiceNominados"] = indiceNominadoActual;
+                Session["nominadoSeleccionado"] = null;
 
                 CargarCategorias(indiceCategoriaActual);
                 CargarNominados(indiceNominadoActual);
 
                 // updtPnl.Update();
-
-                Session["nominadoSeleccionado"] = null;
             }
         }
         protected void BotonAnterior_Click(object sender, EventArgs e)
         {
-            // Ir a la categoría anterior y los nominados correspondientes, deshaciendo el voto que se realizó ahí y por tanto yendo 1 catqegoría atrás y 3 nominados atrás
             if (Usuario == null)
             {
                 Response.Redirect("LoginDiscord.aspx");

@@ -44,10 +44,10 @@ namespace web
             //    if (Usuario.VotosUsuario() == 10) // 10 o las categorias que sean
             //    {
             //        Response.Redirect("GraciasPorVotar.aspx");
-            //}
+            //    }
             //    else
             //    {
-            Response.Redirect("Votaciones.aspx");
+                    Response.Redirect("Votaciones.aspx");
             //    }
             //}
         }

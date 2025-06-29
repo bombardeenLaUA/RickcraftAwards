@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Votaciones.aspx.cs" Inherits="web.Votaciones" %>
+﻿<%@ Page Title="Rickcraft Awards | Votaciones" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Votaciones.aspx.cs" Inherits="web.Votaciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
 
@@ -149,7 +149,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <button class="boton1">Votar</button>
-    <h1 class="titulo">CATEGORÍA</h1>
+    <h1 class="titulo">CATEGORIA</h1>
     <video class="fondo" autoplay muted loop>
         <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
     </video>

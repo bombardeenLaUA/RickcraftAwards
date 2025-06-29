@@ -32,10 +32,10 @@ namespace library
             get { return _nominadoId; }
             set { _nominadoId = value; }
         }
-        public bool AgregarVotacion()
+        public bool AgregarVoto()
         {
             CADVotaciones cad = new CADVotaciones();
-            return cad.AgregarVotacion(this);
+            return cad.AgregarVoto(this);
         }
         public bool EliminarVoto()
         {

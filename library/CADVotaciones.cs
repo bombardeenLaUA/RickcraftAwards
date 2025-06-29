@@ -16,7 +16,7 @@ namespace library
         {
             constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
         }
-        public bool AgregarVotacion(ENVotaciones votacion)
+        public bool AgregarVoto(ENVotaciones votacion)
         {
             bool check = false;
             SqlConnection con = new SqlConnection(constring);
