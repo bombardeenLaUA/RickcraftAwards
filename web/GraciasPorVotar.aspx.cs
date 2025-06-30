@@ -11,7 +11,11 @@ namespace web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Nada
+        }
+        protected void BotonInicio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicio.aspx");
         }
     }
 }
