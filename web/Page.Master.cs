@@ -26,6 +26,19 @@ namespace web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"] == null && Request.Cookies["UsuarioId"] != null)
+            {
+                string discordId = Request.Cookies["UsuarioId"].Value;
+                ENUsuarios usuario = new ENUsuarios();
+                ENUsuarios usuarioRecuperado = usuario.ObtenerUsuario(discordId);
+
+                if (usuarioRecuperado != null)
+                {
+                    Session["Usuario"] = usuarioRecuperado;
+                    _usuario = usuarioRecuperado;
+                }
+            }
+
             if (Usuario == null)
             {
                 // btnLogin.Visible = true;
@@ -66,6 +79,16 @@ namespace web
                 Expires = DateTime.Now.AddYears(-1)
             };
             Response.Cookies.Add(sessionCookie);
+
+            HttpCookie userCookie = new HttpCookie("UsuarioId")
+            {
+                HttpOnly = true,
+                Secure = Request.IsSecureConnection,
+                Path = "/",
+                Expires = DateTime.Now.AddYears(-1)
+            };
+            Response.Cookies.Add(userCookie);
+
             Response.Redirect("Inicio.aspx");
         }
     }

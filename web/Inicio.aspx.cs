@@ -25,7 +25,10 @@ namespace web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Nada
+            if (!IsPostBack)
+            {
+                // Nada
+            }
         }
         protected void BotonVotar_Click(object sender, EventArgs e)
         {

@@ -15,6 +15,18 @@ namespace web
         {
             if (!IsPostBack)
             {
+                if (Session["Usuario"] == null && Request.Cookies["UsuarioId"] != null)
+                {
+                    string discordId = Request.Cookies["UsuarioId"].Value;
+                    ENUsuarios usuario = new ENUsuarios();
+                    ENUsuarios usuarioRecuperado = usuario.ObtenerUsuario(discordId);
+
+                    if (usuarioRecuperado != null)
+                    {
+                        Session["Usuario"] = usuarioRecuperado;
+                    }
+                }
+
                 CargarDatos();
             }
         }

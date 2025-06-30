@@ -59,6 +59,10 @@ namespace web
 
                         Session["Usuario"] = usuario;
 
+                        HttpCookie cookie = new HttpCookie("UsuarioId", usuario.IdDiscord);
+                        cookie.Expires = DateTime.Now.AddDays(1);
+                        Response.Cookies.Add(cookie);
+
                         string origen = Session["LoginOrigen"] as string;
 
                         if (origen == "Votaciones")
