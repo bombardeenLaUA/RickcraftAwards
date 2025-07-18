@@ -81,6 +81,7 @@
     <Content Include="GraciasPorVotar.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="LoginDiscord.aspx" />
+    <Content Include="ResumenVotos.aspx" />
     <Content Include="Votaciones.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -114,6 +115,13 @@
       <DependentUpon>Page.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResumenVotos.aspx.cs">
+      <DependentUpon>ResumenVotos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResumenVotos.aspx.designer.cs">
+      <DependentUpon>ResumenVotos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Votaciones.aspx.cs">
       <DependentUpon>Votaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
