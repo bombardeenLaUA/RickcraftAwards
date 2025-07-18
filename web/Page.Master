@@ -8,16 +8,93 @@
     <link rel="icon" href="files/rickcraft.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="files/rickcraft.ico" type="image/x-icon" />
     <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    
+        <style>
+            .contenedor-pagem {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 25px;
+                background-color: #2c3e50; 
+                color: #ccc; 
+            }
+            .usuario-container {
+                width: 400px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: flex-end;
+            }
+
+            .izq-container {
+                width: 400px; 
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .nombre-usuario {
+                font-size: 1em;
+
+                /* nombre largo */
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .contenedor-pagem img {
+                height: 50px; 
+                width: auto;  
+            }
+
+            .contenedor-pagem .text-center {
+                flex: 1;
+                text-align: center;
+                font-size: 1.6em;
+                font-weight: bold;
+            }
+
+            .hrpagem {
+                margin: 0;
+                border: none;
+                border-top: 2px solid #ccc;
+            }
+            .contenido {
+                padding-top: 20px;
+            }
+
+        </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">  
     </asp:ContentPlaceHolder>
+    
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scrpMng" runat="server" />
-        <div>
+
+        <div class="contenedor-pagem">
+            <div class="izq-container">
+                <img src="files/titulo.png" alt="Izquierda" />
+            </div>
+
+            <div class="text-center">BIENVENIDOS</div>
+            
+            <div class="usuario-container">
+                <span class="nombre-usuario">Nombre Usuario</span>
+                <img src="files/usuario.png" alt="Usuario" />
+            </div>
+
+        </div>
+        <hr class="hrpagem" />
+
+        <div class="contenido">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+
     </form>
 </body>
-</html>
+

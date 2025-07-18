@@ -128,8 +128,8 @@
             }
 
             .creditos {
-                position: absolute;
-                top: 2vh;
+                position: fixed;
+                top: 100px; /* para que no se solape con el header */
                 right: 2vw;
                 font-size: clamp(12px, 2.5vw, 20px); 
                 font-family: 'Minecraft';
@@ -139,7 +139,7 @@
                 white-space: nowrap; 
                 text-align: right;
             }
-            
+
             /* móviles*/            
             @media (max-width: 480px) {
                 .creditos {
