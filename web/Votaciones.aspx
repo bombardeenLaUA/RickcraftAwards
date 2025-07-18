@@ -10,25 +10,25 @@
         }
 
         body {
-            padding: 0; 
-            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            background: #222; /* color de fondo base por si el vídeo no carga */
+            position: relative;
+            font-family: 'Minecrafter';
+            color: white;
         }
 
         .fondo {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             height: 100vh;
             width: 100vw;
             z-index: -1;
             object-fit: cover;
+            pointer-events: none;
         }
-        @media (min-aspect-ratio: 21/9) {
-            .fondo {
-                object-fit: contain;
-                background: black;
-            }
-        }        
 
         h1.titulo {
             position: relative;
@@ -386,9 +386,11 @@
             <div class="candidato-boton">Elegir</div>
         </div>
     </div>
+
     <div class="boton-container">
-        <button class="boton1">Continuar</button>
-    </div>
+        <asp:Button ID="btnContinuar" runat="server" CssClass="boton1" Text="Continuar" OnClick="btnContinuar_Click" />
+    </div>  
+
     <video class="fondo" autoplay muted loop>
         <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
     </video>

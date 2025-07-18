@@ -79,6 +79,9 @@ namespace web
             // btnSeleccion.Visible = true;
             // glowBordes.Visible = true;
         }
+
+
+
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
             if (Usuario == null)
@@ -167,6 +170,11 @@ namespace web
 
                 // updtPnl.Update();
             }
+        }
+
+        protected void btnContinuar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GraciasPorVotar.aspx");
         }
     }
 }
