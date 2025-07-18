@@ -342,7 +342,7 @@
                 rgba(255, 255, 255, 0) 100%
             );
             transform: rotate(25deg);
-            animation: shineMove 1.2s ease-out forwards;
+            animation: shineMove 1.3s ease-out forwards;
             pointer-events: none;
         }
 
@@ -351,17 +351,9 @@
                 left: -75%;
             }
             100% {
-                left: 125%;
+                left: 135%;
             }
         }
-
-        /*.candidato.seleccionado {
-            border-color: #FFD700;
-            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
-            box-shadow: 0 0 32px #FFD70088;
-            color: #222;
-        }
-
         .candidato.seleccionado .candidato-boton {
             background: linear-gradient(135deg, #FFD700 0%, #FFF176 100%);
             color: #222;
