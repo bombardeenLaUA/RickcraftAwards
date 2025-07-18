@@ -90,72 +90,169 @@
                     
         /* móviles*/            
         @media (max-width: 480px) {
-            .creditos {
-                font-size: 10px;
-                top: 1vh;
-                right: 1vw;
-                white-space: nowrap; 
+            .candidatos-container {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+                margin: 24px 0 60px 0;
             }
-                
-            .centrado {
-                padding: 1vh;
+            .candidato {
+                min-width: 96vw;
+                max-width: 99vw;
+                padding: 0 0 12px 0;
+                min-height: unset;
+                border-radius: 12px;
             }
-                
-            .minecraft-button {
-                padding: 10px 16px; 
-                font-size: 16px;
+            .candidato-img {
+                min-height: 100px;
+                max-height: 140px;
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        /* tablets */
+        @media (min-width: 481px) and (max-width: 900px) {
+            .candidatos-container {
+                flex-direction: column;
+                gap: 28px;
+                align-items: center;
+                margin: 32px 0 80px 0;
+            }
+            .candidato {
+                min-width: 80vw;
+                max-width: 92vw;
+                border-radius: 14px;
+            }
+            .candidato-img {
+                min-height: 160px;
+                max-height: 220px;
+                border-radius: 14px 14px 0 0;
+            }
+        }
+        /* portátiles/pantallas medianas */
+        @media (min-width: 901px) and (max-width: 1199px) {
+            .candidatos-container {
+                flex-direction: row;
+                gap: 36px;
+                margin: 36px 0 90px 0;
+            }
+            .candidato {
+                min-width: 320px;
+                max-width: 380px;
+                border-radius: 16px;
+            }
+            .candidato-img {
+                min-height: 180px;
+                max-height: 260px;
+                border-radius: 16px 16px 0 0;
+            }
+        }
+        /* pantallas grandes */
+        @media (min-width: 1200px) and (max-width: 1919px) {
+            .candidatos-container {
+                flex-direction: row;
+                gap: 56px;
+                margin: 40px 0 100px 0;
+            }
+            .candidato {
+                min-width: 400px;
+                max-width: 440px;
+                border-radius: 18px;
+            }
+            .candidato-img {
+                min-height: 220px;
+                max-height: 320px;
+                border-radius: 18px 18px 0 0;
+            }
+        }
+        /* pantallas extra grandes */
+        @media (min-width: 1920px) {
+            .candidatos-container {
+                flex-direction: row;
+                gap: 80px;
+                margin: 60px 0 140px 0;
+            }
+            .candidato {
+                min-width: 500px;
+                max-width: 600px;
+                border-radius: 22px;
+            }
+            .candidato-img {
+                min-height: 320px;
+                max-height: 420px;
+                border-radius: 22px 22px 0 0;
+            }
+        }
+            .candidatos-container {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 56px; /*espacio entre candidatos*/
+                margin: 40px 0 100px 0;
+            }
+
+            .candidato {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: linear-gradient(135deg, #222 0%, #444 100%);
+                color: white;
+                font-family: 'Minecrafter', Arial, sans-serif;
+                font-size: clamp(18px, 3vw, 32px);
+                border: 3px solid #81C784;
+                border-radius: 18px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+                padding: 0 0 32px 0; /* espacio abajo de la imagen */
+                min-width: 400px;    /* tamaño ancho */
+                max-width: 440px;
+                text-align: center;
+                cursor: pointer;
+                transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.2s;
+                user-select: none;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .candidato-img {
+                width: 100%;
+                aspect-ratio: 1/1;
+                height: auto;
+                min-height: 220px;  
+                max-height: 320px;
+                display: block;
+                border-radius: 18px 18px 0 0;
+                border: none;
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+        @media (max-width: 900px) {
+            .candidatos-container {
+                flex-direction: column;
+                gap: 32px;
+                align-items: center;
+            }
+            .candidato {
+                min-width: 90vw;
+                max-width: 98vw;
             }
         }
         /* tablets */
         @media (max-width: 768px) {
-            .centrado { 
-                padding: 1.5vh;
-            }
-            .minecraft-button { 
-                font-size: 18px; padding: 12px 18px; 
-            }
-            .creditos { 
-                font-size: 12px; 
             }
         }
         /* portátiles/pantallas medianas */
         @media (min-width: 769px) and (max-width: 1199px) {
-
-            .centrado { 
-                padding: 2vh;
-            }
-            .minecraft-button { 
-                font-size: 24px; padding: 14px 22px;
-            }
-            .creditos { 
-                font-size: 16px;
-            }
+            
         }
            
         /* pantallas grandes */
         @media (min-width: 1920px) {
-            h1.título {
-                font-size: 120px;
-            }
-                
-            h1.mejores {
-                font-size: 50px;
-            }
-                
-            .minecraft-button {
-                font-size: 40px;
-                padding: 16px 28px; 
-            }
-                
-            .creditos {
-                font-size: 24px;
-            }
         }
         .candidatos-container {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            gap: 56px; 
+            gap: 56px; /*espacio entre candidatos*/
             margin: 40px 0 100px 0;
         }
 
@@ -170,8 +267,8 @@
             border: 3px solid #81C784;
             border-radius: 18px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            padding: 0 0 32px 0; /* Más espacio inferior */
-            min-width: 400px;    /* Más ancho mínimo */
+            padding: 0 0 32px 0; /* espacio abajo de la imagen */
+            min-width: 400px;    /* tamaño ancho */
             text-align: center;
             cursor: pointer;
             transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.2s;
@@ -215,7 +312,7 @@
         }
 
         .candidato:hover {
-            transform: scale(1.08);
+            transform: scale(1.10) translateY(-8px);
             border-color: #FFD700;
             box-shadow: 0 0 32px #FFD70088, 0 8px 24px rgba(0,0,0,0.5);
             background: linear-gradient(135deg, #333 0%, #666 100%);
@@ -223,6 +320,42 @@
         }
 
         .candidato.seleccionado {
+            position: relative;
+            border-color: #FFD700;
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            box-shadow: 0 0 32px #FFD70088;
+            color: #222;
+            overflow: hidden;
+        }
+
+        .candidato.seleccionado::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -75%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shineMove 1.2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes shineMove {
+            0% {
+                left: -75%;
+            }
+            100% {
+                left: 125%;
+            }
+        }
+
+        /*.candidato.seleccionado {
             border-color: #FFD700;
             background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
             box-shadow: 0 0 32px #FFD70088;
