@@ -182,49 +182,49 @@
                 border-radius: 22px 22px 0 0;
             }
         }
-            .candidatos-container {
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-                gap: 56px; /*espacio entre candidatos*/
-                margin: 40px 0 100px 0;
-            }
-
-            .candidato {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                background: linear-gradient(135deg, #222 0%, #444 100%);
-                color: white;
-                font-family: 'Minecrafter', Arial, sans-serif;
-                font-size: clamp(18px, 3vw, 32px);
-                border: 3px solid #81C784;
-                border-radius: 18px;
-                box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-                padding: 0 0 32px 0; /* espacio abajo de la imagen */
-                min-width: 400px;    /* tamaño ancho */
-                max-width: 440px;
-                text-align: center;
-                cursor: pointer;
-                transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.2s;
-                user-select: none;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .candidato-img {
-                width: 100%;
-                aspect-ratio: 1/1;
-                height: auto;
-                min-height: 220px;  
-                max-height: 320px;
-                display: block;
-                border-radius: 18px 18px 0 0;
-                border: none;
-                margin: 0;
-                box-shadow: none;
-            }
+        .candidatos-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 56px; /*espacio entre candidatos*/
+            margin: 40px 0 100px 0;
         }
+
+        .candidato {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            color: white;
+            font-family: 'Minecrafter', Arial, sans-serif;
+            font-size: clamp(18px, 3vw, 32px);
+            border: 3px solid #81C784;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            padding: 0 0 32px 0; /* espacio abajo de la imagen */
+            min-width: 400px;    /* tamaño ancho */
+            max-width: 440px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.2s;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .candidato-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            height: auto;
+            min-height: 220px;  
+            max-height: 320px;
+            display: block;
+            border-radius: 18px 18px 0 0;
+            border: none;
+            margin: 0;
+            box-shadow: none;
+        }
+
         @media (max-width: 900px) {
             .candidatos-container {
                 flex-direction: column;
@@ -253,7 +253,7 @@
             justify-content: center;
             align-items: flex-start;
             gap: 56px; /*espacio entre candidatos*/
-            margin: 40px 0 100px 0;
+            margin: 120px 0 140px 0;
         }
 
         .candidato {
@@ -307,8 +307,13 @@
             margin-top: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             border: 2px solid #81C784;
-            transition: background 0.2s, border-color 0.2s, color 0.2s;
-            pointer-events: none; /* Solo decorativo */
+            transition: background 0.2s, border-color 0.2s, color 0.2s, padding 0.2s, box-shadow 0.2s;;
+        }
+
+        .candidato-boton:hover {
+            padding: 15px 35px;
+            box-shadow: 0px 0px 12px #FFD70088, 0 2px 8px #2228;
+            transition: padding 0.2s, box-shadow 0.2s;
         }
 
         .candidato:hover {
