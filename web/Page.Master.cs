@@ -91,5 +91,9 @@ namespace web
 
             Response.Redirect("Inicio.aspx");
         }
+        protected void BotonTitulo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicio.aspx");
+        }
     }
 }

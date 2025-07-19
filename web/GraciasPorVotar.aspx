@@ -6,7 +6,7 @@
             padding: 0;
             min-height: 100vh;
             background: #111;
-            font-family: 'Minecrafter', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         .fondo-gracias {
@@ -75,22 +75,52 @@
             font-weight: bold;
         }
 
+        @font-face {
+            font-family: 'Minecrafter';
+            src: url(files/fonts/Minecrafter.Reg.ttf) format(truetype);
+            font-weight: normal;
+            font-style: normal;
+        }
+
         .gracias-boton {
-            background: linear-gradient(135deg, #FFD700, #81C784);
-            color: #111;
-            font-size: clamp(18px, 3.5vw, 28px);
-            padding: 14px 40px;
-            border-radius: 14px;
-            border: 2px solid #388E3C;
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 25%, #4CAF50 50%, #388E3C 75%, #2E7D32 100%);
+            color: white;
+            padding: 12px 20px;
+            letter-spacing: 1px;
+            border: 3px solid;
+            border-color: #81C784 #2E7D32 #2E7D32 #81C784;
+            font-family: 'Minecrafter';
+            font-size: clamp(18px, 4vw, 35px); 
             cursor: pointer;
-            box-shadow: 0 4px 18px #FFD70055;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.3),
+                inset -2px -2px 0px rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.4);
+            gap: 8px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            margin-top: 3vh;
+            position: relative;
+            text-shadow: 0 0 30px white;
         }
 
         .gracias-boton:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 24px #FFD700aa;
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 25%, #66BB6A 50%, #4CAF50 75%, #388E3C 100%);
+            border-color: #A5D6A7 #1B5E20 #1B5E20 #A5D6A7;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.4),
+                inset -2px -2px 0px rgba(0,0,0,0.4),
+                0 6px 12px rgba(0,0,0,0.5);
+            transform: translateY(-1px);
+        }
+
+        .gracias-boton:active {
+            background: linear-gradient(135deg, #388E3C 0%, #4CAF50 25%, #388E3C 50%, #2E7D32 75%, #1B5E20 100%);
+            border-color: #2E7D32 #81C784 #81C784 #2E7D32;
+            box-shadow: 
+                inset -2px -2px 0px rgba(255,255,255,0.2),
+                inset 2px 2px 0px rgba(0,0,0,0.4),
+                0 2px 4px rgba(0,0,0,0.3);
+            transform: translateY(1px);
         }
     </style>
 </asp:Content>
@@ -103,14 +133,14 @@
         <img src="https://imgs.search.brave.com/gyl2Mx8k3hBdrkwewcFBuwFpMGmJHvybg0fkqDkv2ww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wLm5v/dmFza2luLm1lLzUy/Nzg5ODM2MTAucG5n/P2NsYXNzPXRodW1i/bmFpbA" alt="Trofeo" class="gracias-trofeo animate-trofeo" />
         <div class="gracias-titulo">¡GRACIAS POR VOTAR!</div>
         <div class="gracias-mensaje">
-            Hemos registrado tu voto con exito  
-            <br> Si lo deseas, puedes modificarlo o finalizar tu participacion mas adelante
-            <br><br> Gracias por formar parte de los <b>Rickcraft Awards</b>  
+            Hemos registrado tus votos con éxito.
+            <br> Tus votos ya no podrán ser modificados.
+            <br><br> Gracias por formar parte de los <b>Rickcraft Awards</b>.
             <br><span>¡Mucha suerte a tus favoritos!</span>
         </div>
-        <a href="Inicio.aspx" class="gracias-boton">Volver al inicio</a>
+        <asp:Button ID="BotonInicio" runat="server" CssClass="gracias-boton" Text="Volver al inicio" OnClick="BotonInicio_Click" />
     </div>
-    <!-- animacion trofeo hover (pako nose como coño sabes js es complicadisimo -->
+    <!-- animacion trofeo hover (pako nose como coño sabes js es complicadisimo) -->
    
     <script>
         document.addEventListener("DOMContentLoaded", function () {

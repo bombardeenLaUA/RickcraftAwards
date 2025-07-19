@@ -10,12 +10,19 @@
     <title></title>
     
         <style>
+            @font-face {
+                font-family: sans-serif;
+                font-weight: normal;
+                font-style: normal;
+            }
+
             .contenedor-pagem {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 15px 25px;
                 background-color: #2c3e50; 
+                font-family: sans-serif;
                 color: #ccc; 
             }
             .usuario-container {
@@ -23,14 +30,16 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                margin-right: 50px;
                 justify-content: flex-end;
-            }
+            }   
 
             .izq-container {
                 width: 400px; 
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
+                margin-left: 50px;
             }
 
             .nombre-usuario {
@@ -65,6 +74,14 @@
                 padding-top: 20px;
             }
 
+            .imagen-logo {
+                max-height: 35%;
+                max-width: 35%;
+                height: auto;
+                width: auto;
+                object-fit: contain;
+            }
+
         </style>
 
     <asp:ContentPlaceHolder ID="head" runat="server">  
@@ -77,7 +94,7 @@
 
         <div class="contenedor-pagem">
             <div class="izq-container">
-                <img src="files/titulo.png" alt="Izquierda" />
+                <asp:ImageButton ID="ImgTitulo" runat="server" ImageUrl="files/titulo.png" CssClass="imagen-logo" OnClick="BotonTitulo_Click" />
             </div>
 
             <div class="text-center">BIENVENIDOS</div>
@@ -97,4 +114,4 @@
 
     </form>
 </body>
-
+</html>
