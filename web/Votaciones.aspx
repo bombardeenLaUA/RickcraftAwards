@@ -307,13 +307,13 @@
             margin-top: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             border: 2px solid #81C784;
-            transition: background 0.2s, border-color 0.2s, color 0.2s, padding 0.2s, box-shadow 0.2s;;
+            transform: scale(1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .candidato-boton:hover {
-            padding: 15px 35px;
+            transform: scale(1.1);
             box-shadow: 0px 0px 12px #FFD70088, 0 2px 8px #2228;
-            transition: padding 0.2s, box-shadow 0.2s;
         }
 
         .candidato:hover {
