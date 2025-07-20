@@ -237,9 +237,7 @@
             }
         }
         /* tablets */
-        @media (max-width: 768px) {
-            }
-        }
+        @media (max-width: 768px) { }
         /* portátiles/pantallas medianas */
         @media (min-width: 769px) and (max-width: 1199px) {
             
