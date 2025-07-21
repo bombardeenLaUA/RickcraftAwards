@@ -216,7 +216,7 @@
 
     <div class="centrado">
         <h1 class="título"><span translate="no">rickcraft awards</span></h1>
-        <h1 class="mejores">Elige Los Mejores:</h1>
+        <h1 class="mejores">Elige Los Mejores</h1>
         <asp:Button ID="BotonVotar" runat="server" OnClick="BotonVotar_Click" CssClass="minecraft-button" Text="Vota Ya"/>
     </div>
     <h1 class="creditos">Awards Web hecha por: zaxx, pako y rubenzuusss</h1>

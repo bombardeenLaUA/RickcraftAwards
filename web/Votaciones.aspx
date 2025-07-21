@@ -38,8 +38,18 @@
             font-size: clamp(30px, 10vw, 100px);
             letter-spacing: 1px;
             text-shadow: 0 0 100px rgba(255, 255, 255, 0.8);
-            margin-top: 140px;
+            margin-top: 70px;
+            margin-bottom: 0;
         }
+
+        h2.descripcion {
+            text-align: center;
+            font-size: 30px;
+            position: relative;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
         .boton-container {
             display: flex;
             justify-content: center;
@@ -251,7 +261,7 @@
             justify-content: center;
             align-items: flex-start;
             gap: 56px; /*espacio entre candidatos*/
-            margin: 120px 0 140px 0;
+            margin: 100px 0 140px 0;
         }
 
         .candidato {
@@ -366,7 +376,8 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="titulo">CATEGORIA</h1>
+    <h1 class="titulo">Categoria</h1>
+    <h2 class="descripcion">Descripcion</h2>
     <div class="candidatos-container">
         <div class="candidato" onclick="seleccionarCandidato(this)">
             <img src="https://imgs.search.brave.com/jbvSywNuWVlodEbyhNNR2HBY0Tgrk2QEqa9aRxpG5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZmFtb3VzYmlydGhk/YXlzLmNvbS9oZWFk/c2hvdHMvdGhlZ3Jl/ZmctMS5qcGc" class="candidato-img" alt="Candidato 1" />
