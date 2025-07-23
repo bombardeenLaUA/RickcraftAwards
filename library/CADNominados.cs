@@ -15,7 +15,7 @@ namespace library
         {
             constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
         }
-        public bool ObtenerNominado(string id, ENNominados nominado)
+        public bool ObtenerNominado(int id, ENNominados nominado)
         {
             bool check = false;
             SqlConnection con = new SqlConnection(constring);
@@ -31,7 +31,7 @@ namespace library
 
                 if (reader.Read())
                 {
-                    nominado.NominadoId = reader["NominadoId"].ToString();
+                    nominado.NominadoId = Convert.ToInt32(reader["NominadoId"]);
                     nominado.Nombre = reader["Nombre"].ToString();
                     nominado.CategoriaId = reader["CategoriaId"].ToString();
                     check = true;

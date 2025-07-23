@@ -26,8 +26,21 @@ namespace web
                         Session["Usuario"] = usuarioRecuperado;
                     }
                 }
+                if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
+                {
+                    int indiceCategoria = Session["CategoriaACorregir"] as int? ?? 0;
+                    int indiceNominado = indiceCategoria * 3;
 
-                CargarDatos();
+                    Session["indiceCategorias"] = indiceCategoria;
+                    Session["indiceNominados"] = indiceNominado;
+
+                    CargarCategorias(indiceCategoria);
+                    CargarNominados(indiceNominado);
+                }
+                else
+                {
+                    CargarDatos();
+                }
             }
         }
         private void CargarDatos()
@@ -39,6 +52,11 @@ namespace web
             Session["indiceCategorias"] = indiceCategorias;
             Session["indiceNominados"] = indiceNominados;
 
+            if (indiceCategorias == 0)
+            {
+                //btnAnterior.Visible = false;
+            }
+
             CargarCategorias(indiceCategorias);
             CargarNominados(indiceNominados);
 
@@ -49,9 +67,9 @@ namespace web
         {
             ENCategorias categoria = new ENCategorias();
 
-            if (!categoria.ObtenerCategoria((indice + 1).ToString()))
+            if (!categoria.ObtenerCategoria((indice + 1)))
             {
-            //    Response.Redirect("GraciasPorVotar.aspx");
+            //    Response.Redirect("ResumenVotos.aspx");
             //    return;
             }
 
@@ -63,9 +81,9 @@ namespace web
             ENNominados nominado2 = new ENNominados();
             ENNominados nominado3 = new ENNominados();
 
-            nominado1.ObtenerNominado((indice + 1).ToString());
-            nominado2.ObtenerNominado((indice + 2).ToString()); 
-            nominado3.ObtenerNominado((indice + 3).ToString());
+            nominado1.ObtenerNominado((indice + 1));
+            nominado2.ObtenerNominado((indice + 2)); 
+            nominado3.ObtenerNominado((indice + 3));
 
             // Asignar los datos de los nominados a los controles de la interfaz
         }
@@ -79,9 +97,6 @@ namespace web
             // btnSeleccion.Visible = true;
             // glowBordes.Visible = true;
         }
-
-
-
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
             if (Usuario == null)
@@ -92,22 +107,27 @@ namespace web
 
             int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
             int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
-            string nominadoSeleccionadoId = Session["nominadoSeleccionado"]?.ToString();
-
-            if (string.IsNullOrEmpty(nominadoSeleccionadoId))
-            {
-                return;
-            }
+            int nominadoSeleccionadoId = Session["nominadoSeleccionado"] as int? ?? 0;
 
             ENVotaciones voto = new ENVotaciones
             {
                 DiscordId = Usuario.IdDiscord,
-                CategoriaId = (indiceCategoriaActual + 1).ToString(),
+                CategoriaId = (indiceCategoriaActual + 1),
                 NominadoId = nominadoSeleccionadoId
             };
 
             if (voto.AgregarVoto())
             {
+                if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
+                {
+                    //btnAnterior.Visible = false;
+                    Session.Remove("CategoriaACorregir");
+                    Session.Remove("CorregirDesdeResumen");
+                    Session["nominadoSeleccionado"] = null;
+                    Response.Redirect("ResumenVotos.aspx");
+                    return;
+                }
+
                 indiceCategoriaActual++;
                 indiceNominadoActual += 3;
 
@@ -141,9 +161,9 @@ namespace web
             indiceNominadoActual -= 3;
 
             ENVotaciones votoTemp = new ENVotaciones();
-            string nominadoVotadoId;
+            int nominadoVotadoId;
 
-            if (votoTemp.ObtenerVoto(Usuario.IdDiscord, (indiceCategoriaActual + 1).ToString()))
+            if (votoTemp.ObtenerVoto(Usuario.IdDiscord, (indiceCategoriaActual + 1)))
             {
                 nominadoVotadoId = votoTemp.NominadoId;
             }
@@ -155,7 +175,7 @@ namespace web
             ENVotaciones voto = new ENVotaciones
             {
                 DiscordId = Usuario.IdDiscord,
-                CategoriaId = (indiceCategoriaActual + 1).ToString(),
+                CategoriaId = (indiceCategoriaActual + 1),
                 NominadoId = nominadoVotadoId
             };
 
@@ -171,9 +191,9 @@ namespace web
                 // updtPnl.Update();
             }
         }
-
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
+            //Response.Redirect("ResumenVotos.aspx");
             Response.Redirect("GraciasPorVotar.aspx");
         }
     }

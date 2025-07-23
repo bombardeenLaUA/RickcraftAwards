@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace library
 {
     public class ENVotaciones
     {
-        private string _votoId;
-        public string VotoId
+        private int _votoId;
+        public int VotoId
         {
             get { return _votoId; }
             set { _votoId = value; }
@@ -20,14 +21,14 @@ namespace library
             get { return _discordId; }
             set { _discordId = value; }
         }
-        private string _categoriaId;
-        public string CategoriaId
+        private int _categoriaId;
+        public int CategoriaId
         {
             get { return _categoriaId; }
             set { _categoriaId = value; }
         }
-        private string _nominadoId;
-        public string NominadoId
+        private int _nominadoId;
+        public int NominadoId
         {
             get { return _nominadoId; }
             set { _nominadoId = value; }
@@ -42,10 +43,16 @@ namespace library
             CADVotaciones cad = new CADVotaciones();
             return cad.EliminarVoto(this);
         }
-        public bool ObtenerVoto(string discordId, string categoriaId)
+        public bool ObtenerVoto(string discordId, int categoriaId)
         {
             CADVotaciones cad = new CADVotaciones();
             return cad.ObtenerVoto(discordId, categoriaId, this);
+        }
+        public DataSet NominadosSeleccionadosPorElUsuario(string discordId)
+        {
+            DiscordId = discordId;
+            CADVotaciones cad = new CADVotaciones();
+            return cad.NominadosSeleccionadosPorElUsuario(this);
         }
     }
 }

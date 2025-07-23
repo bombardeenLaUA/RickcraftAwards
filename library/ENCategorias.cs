@@ -8,8 +8,8 @@ namespace library
 {
     public class ENCategorias
     {
-        private string _categoriaId;
-        public string CategoriaId
+        private int _categoriaId;
+        public int CategoriaId
         {
             get { return _categoriaId; }
             set { _categoriaId = value; }
@@ -26,7 +26,7 @@ namespace library
             get { return _descripcion; }
             set { _descripcion = value; }
         }
-        public bool ObtenerCategoria(string catId)
+        public bool ObtenerCategoria(int catId)
         {
             CADCategorias cadCategorias = new CADCategorias();
             return cadCategorias.ObtenerCategoria(catId, this);

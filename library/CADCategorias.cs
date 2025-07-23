@@ -15,7 +15,7 @@ namespace library
         {
             constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
         }
-        public bool ObtenerCategoria(string id, ENCategorias categoria)
+        public bool ObtenerCategoria(int id, ENCategorias categoria)
         {
             bool check = false;
             SqlConnection con = new SqlConnection(constring);
@@ -31,7 +31,7 @@ namespace library
 
                 if (reader.Read())
                 {
-                    categoria.CategoriaId = reader["CategoriaId"].ToString();
+                    categoria.CategoriaId = Convert.ToInt32(reader["CategoriaId"]);
                     categoria.Nombre = reader["Nombre"].ToString();
                     categoria.Descripcion = reader["Descripcion"].ToString();
                     check = true;

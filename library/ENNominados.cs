@@ -8,8 +8,8 @@ namespace library
 {
     public class ENNominados
     {
-        private string _nominadoId;
-        public string NominadoId
+        private int _nominadoId;
+        public int NominadoId
         {
             get { return _nominadoId; }
             set { _nominadoId = value; }
@@ -26,7 +26,7 @@ namespace library
             get { return _categoriaId; }
             set { _categoriaId = value; }
         }
-        public bool ObtenerNominado(string nomId)
+        public bool ObtenerNominado(int nomId)
         {
             CADNominados cadNominados = new CADNominados();
             return cadNominados.ObtenerNominado(nomId, this);

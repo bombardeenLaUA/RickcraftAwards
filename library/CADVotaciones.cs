@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.SymbolStore;
 using System.Linq;
@@ -70,7 +71,7 @@ namespace library
             }
             return check;
         }
-        public bool ObtenerVoto(string discordId, string categoriaId, ENVotaciones votacion)
+        public bool ObtenerVoto(string discordId, int categoriaId, ENVotaciones votacion)
         {
             bool check = false;
             SqlConnection con = new SqlConnection(constring);
@@ -87,10 +88,10 @@ namespace library
 
                 if (reader.Read())
                 {
-                    votacion.VotoId = reader["VotoId"].ToString();
+                    votacion.VotoId = Convert.ToInt32(reader["VotoId"]);
                     votacion.DiscordId = reader["DiscordId"].ToString();
-                    votacion.CategoriaId = reader["CategoriaId"].ToString();
-                    votacion.NominadoId = reader["NominadoId"].ToString();
+                    votacion.CategoriaId = Convert.ToInt32(reader["CategoriaId"]);
+                    votacion.NominadoId = Convert.ToInt32(reader["NominadoId"]);
                     check = true;
                 }
             }
@@ -103,6 +104,15 @@ namespace library
                 con.Close();
             }
             return check;
+        }
+        public DataSet NominadosSeleccionadosPorElUsuario(ENVotaciones en)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection con = new SqlConnection(constring);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Votos WHERE DiscordId = @discord_id", con);
+            da.SelectCommand.Parameters.AddWithValue("@discord_id", en.DiscordId);
+            da.Fill(ds, "Votos");
+            return ds;
         }
     }
 }
