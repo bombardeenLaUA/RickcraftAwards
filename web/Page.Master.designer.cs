@@ -51,6 +51,15 @@ namespace web
         protected global::System.Web.UI.WebControls.ImageButton ImgTitulo;
 
         /// <summary>
+        /// Control lblNombreUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreUser;
+
+        /// <summary>
         /// Control ImageUser.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton ImageUser;
+
+        /// <summary>
+        /// Control BotonCerrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BotonCerrar;
 
         /// <summary>
         /// Control ContentPlaceHolder1.

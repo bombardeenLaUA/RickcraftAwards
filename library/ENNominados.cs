@@ -26,6 +26,12 @@ namespace library
             get { return _categoriaId; }
             set { _categoriaId = value; }
         }
+        private string _imageURL;
+        public string ImageURL
+        {
+            get { return _imageURL; }
+            set { _imageURL = value; }
+        }
         public bool ObtenerNominado(int nomId)
         {
             CADNominados cadNominados = new CADNominados();

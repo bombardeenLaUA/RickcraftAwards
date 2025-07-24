@@ -20,6 +20,18 @@ namespace library
             get { return _nombre; }
             set { _nombre = value; }
         }
+        private string _avatarHash;
+        public string AvatarHash
+        {
+            get { return _avatarHash; }
+            set { _avatarHash = value; }
+        }
+        private int _discriminator;
+        public int Discriminator
+        {
+            get { return _discriminator; }
+            set { _discriminator = value; }
+        }
         public bool AgregarUsuario()
         {
             CADUsuarios cad = new CADUsuarios();

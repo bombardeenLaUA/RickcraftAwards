@@ -26,33 +26,43 @@ namespace web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Usuario"] == null && Request.Cookies["UsuarioId"] != null)
-            //{
-            //    string discordId = Request.Cookies["UsuarioId"].Value;
-            //    ENUsuarios usuario = new ENUsuarios();
-            //    ENUsuarios usuarioRecuperado = usuario.ObtenerUsuario(discordId);
+            if (Session["Usuario"] == null && Request.Cookies["UsuarioId"] != null)
+            {
+                string discordId = Request.Cookies["UsuarioId"].Value;
+                ENUsuarios usuario = new ENUsuarios();
+                ENUsuarios usuarioRecuperado = usuario.ObtenerUsuario(discordId);
 
-            //    if (usuarioRecuperado != null)
-            //    {
-            //        Session["Usuario"] = usuarioRecuperado;
-            //        _usuario = usuarioRecuperado;
-            //    }
-            //}
+                if (usuarioRecuperado != null)
+                {
+                    Session["Usuario"] = usuarioRecuperado;
+                    _usuario = usuarioRecuperado;
+                }
+            }
 
-            //if (Usuario == null)
-            //{
-            //    btnLogin.Visible = true;
-            //    userPfp.Visible = false;
-            //    userNombre.Visible = false;
-            //    btnCerrarSesion.Visible = false;
-            //}
-            //else
-            //{
-            //    btnLogin.Visible = false;
-            //    userPfp.Visible = true;
-            //    userNombre.Visible = true;
-            //    btnCerrarSesion.Visible = true;
-            //}
+            if (Usuario != null)
+            {
+                string avatarUrl;
+                if (!string.IsNullOrEmpty(Usuario.AvatarHash))
+                {
+                    avatarUrl = $"https://cdn.discordapp.com/avatars/{Usuario.IdDiscord}/{Usuario.AvatarHash}.png";
+                }
+                else
+                {
+                    int fallback = Usuario.Discriminator % 5;
+                    avatarUrl = $"https://cdn.discordapp.com/embed/avatars/{fallback}.png";
+                }
+                ImageUser.ImageUrl = avatarUrl;
+                lblNombreUser.Visible = true;
+                lblNombreUser.Text = Usuario.Nombre;
+                BotonCerrar.Visible = true;
+                ImageUser.ToolTip = Usuario.Nombre;
+            }
+            else
+            {
+                lblNombreUser.Visible = false;
+                BotonCerrar.Visible = false;
+                ImageUser.ToolTip = "Iniciar Sesión";
+            }
         }
         protected void BotonLogin_Click(object sender, EventArgs e)
         {

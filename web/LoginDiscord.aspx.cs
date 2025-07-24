@@ -51,27 +51,31 @@ namespace web
                         ENUsuarios usuarioLogeado = new ENUsuarios
                         {
                             IdDiscord = discordId,
-                            Nombre = nombre
+                            Nombre = nombre,
+                            AvatarHash = userData.avatar,
+                            Discriminator = userData.discriminator
                         };
 
-                        usuarioLogeado.AgregarUsuario();
-                        ENUsuarios usuario = usuarioLogeado.ObtenerUsuario(discordId);
+                        bool usuarioGuardado = usuarioLogeado.AgregarUsuario();
 
-                        Session["Usuario"] = usuario;
-
-                        HttpCookie cookie = new HttpCookie("UsuarioId", usuario.IdDiscord);
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.Cookies.Add(cookie);
-
-                        string origen = Session["LoginOrigen"] as string;
-
-                        if (origen == "Votaciones")
+                        if (usuarioLogeado != null)
                         {
-                            Response.Redirect("Votaciones.aspx");
-                        }
-                        else
-                        {
-                            Response.Redirect("Inicio.aspx");
+                            Session["Usuario"] = usuarioLogeado;
+
+                            HttpCookie cookie = new HttpCookie("UsuarioId", usuarioLogeado.IdDiscord);
+                            cookie.Expires = DateTime.Now.AddDays(1);
+                            Response.Cookies.Add(cookie);
+
+                            string origen = Session["LoginOrigen"] as string;
+
+                            if (origen == "Votaciones")
+                            {
+                                Response.Redirect("Votaciones.aspx");
+                            }
+                            else
+                            {
+                                Response.Redirect("Inicio.aspx");
+                            }
                         }
                     }
                     catch (Exception ex)

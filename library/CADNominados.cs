@@ -24,7 +24,7 @@ namespace library
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT NominadoId, Nombre, CategoriaId FROM Nominados WHERE NominadoId = @id", con);
+                SqlCommand cmd = new SqlCommand("SELECT NominadoId, Nombre, CategoriaId, ImagenUrl FROM Nominados WHERE NominadoId = @id", con);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -34,6 +34,7 @@ namespace library
                     nominado.NominadoId = Convert.ToInt32(reader["NominadoId"]);
                     nominado.Nombre = reader["Nombre"].ToString();
                     nominado.CategoriaId = reader["CategoriaId"].ToString();
+                    nominado.ImageURL = "files/nominados/nominado{id}.png";
                     check = true;
                 }
             }

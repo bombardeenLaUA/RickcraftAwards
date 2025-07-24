@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" href="files/rickcraft.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="files/rickcraft.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512‑1ycn6IcaQQ40/MKBW2W4PT6BKI6HhZrZ/n07W5vgBDvF6aOzMe1E0RJKVX0W3N0YWnBcCjxsUw73VU8vE2v5cg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title></title>
         <style>
             @font-face {
@@ -41,7 +42,8 @@
             }
 
             .nombre-usuario {
-                font-size: 1em;
+                font-size: 20px;
+                margin-right: 15px;
                 /* nombre largo */
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -81,14 +83,20 @@
             }
 
             .img-user {
-                max-height: 20%;
-                max-width: 20%;
-                height: auto;
-                width: auto;
-                object-fit: contain;
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 50%;
+                display: block;
+                margin-right: 15px;
+            }
+
+            .btnCerrarSesion {
+                color: red;
+                font-size: 24px;
             }
         </style>
-    <asp:ContentPlaceHolder ID="head" runat="server">  
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -100,8 +108,9 @@
             </div>
             <div class="text-center">BIENVENIDO</div>
             <div class="usuario-container">
-                <span class="nombre-usuario"></span>
-                <asp:ImageButton ID="ImageUser" runat="server" ImageUrl="files/usuario.png" CssClass="img-user" OnClick="BotonLogin_Click" />
+                <asp:Label ID="lblNombreUser" runat="server" CssClass="nombre-usuario" Visible="false"></asp:Label>
+                <asp:ImageButton ID="ImageUser" runat="server" ImageUrl="files/usuario.png" CssClass="img-user" OnClick="BotonLogin_Click" ToolTip="Iniciar Sesión"/>
+                <asp:LinkButton ID="BotonCerrar" runat="server" CssClass="btnCerrarSesion" OnClick="BotonCerrarSesion_Click" Visible="false"><i class="fas fa-sign-out-alt" title="Cerrar Sesión"></i></asp:LinkButton>
             </div>
         </div>
         <hr class="hrpagem" />
