@@ -26,8 +26,22 @@ namespace web
                         Session["Usuario"] = usuarioRecuperado;
                     }
                 }
+
+                if (Session["VotacionFinalizada"] != null && (bool)Session["VotacionFinalizada"])
+                {
+                    Response.Redirect("GraciasPorVotar.aspx");
+                    return;
+                }
+
+                if (Session["VotacionFinalizada"] == null)
+                {
+                    Session["VotacionFinalizada"] = false;
+                }
+
                 if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
                 {
+                    //btnAnterior.Visible = false;
+
                     int indiceCategoria = Session["CategoriaACorregir"] as int? ?? 0;
                     int indiceNominado = indiceCategoria * 3;
 
@@ -45,7 +59,7 @@ namespace web
         }
         private void CargarDatos()
         {
-            // int indiceCategorias = Usuario.VotosUsuario();
+            //int indiceCategorias = Usuario.VotosUsuario();
             int indiceCategorias = 0; // Auxiliar (el bueno es el de la linea de arriba)
             int indiceNominados = indiceCategorias * 3;
 
@@ -59,9 +73,6 @@ namespace web
 
             CargarCategorias(indiceCategorias);
             CargarNominados(indiceNominados);
-
-            // noseque.data.DataSource = listaCategorias;
-            // updtPnl.DataBind();
         }
         private void CargarCategorias(int indice)
         {
@@ -69,8 +80,8 @@ namespace web
 
             if (!categoria.ObtenerCategoria((indice + 1)))
             {
-            //    Response.Redirect("ResumenVotos.aspx");
-            //    return;
+            //   Response.Redirect("ResumenVotos.aspx");
+            //   return;
             }
 
             // Asignar los datos de la categoría a los controles de la interfaz
@@ -90,12 +101,12 @@ namespace web
         protected void BotonSeleccion_Click(object sender, EventArgs e)
         {
             Button btnSeleccionado = (Button)sender;
-            string nominadoId = btnSeleccionado.CommandArgument;
+            int nominadoId = Convert.ToInt32(btnSeleccionado.CommandArgument);
 
             Session["nominadoSeleccionado"] = nominadoId;
 
-            // btnSeleccion.Visible = true;
-            // glowBordes.Visible = true;
+            //btnSeleccion.Visible = true;
+            //glowBordes.Visible = true;
         }
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
@@ -107,39 +118,40 @@ namespace web
 
             int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
             int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
-            int nominadoSeleccionadoId = Session["nominadoSeleccionado"] as int? ?? 0;
+            int? nominadoSeleccionadoId = Session["nominadoSeleccionado"] as int?;
 
-            ENVotaciones voto = new ENVotaciones
+            if (nominadoSeleccionadoId.HasValue)
             {
-                DiscordId = Usuario.IdDiscord,
-                CategoriaId = (indiceCategoriaActual + 1),
-                NominadoId = nominadoSeleccionadoId
-            };
-
-            if (voto.AgregarVoto())
-            {
-                if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
+                ENVotaciones voto = new ENVotaciones
                 {
-                    //btnAnterior.Visible = false;
-                    Session.Remove("CategoriaACorregir");
-                    Session.Remove("CorregirDesdeResumen");
-                    Session["nominadoSeleccionado"] = null;
-                    Response.Redirect("ResumenVotos.aspx");
-                    return;
-                }
+                    DiscordId = Usuario.IdDiscord,
+                    CategoriaId = (indiceCategoriaActual + 1),
+                    NominadoId = (int)nominadoSeleccionadoId
+                };
 
-                indiceCategoriaActual++;
-                indiceNominadoActual += 3;
-
-                Session["indiceCategorias"] = indiceCategoriaActual;
-                Session["indiceNominados"] = indiceNominadoActual;
-                Session["nominadoSeleccionado"] = null;
-
-                CargarCategorias(indiceCategoriaActual);
-                CargarNominados(indiceNominadoActual);
-
-                // updtPnl.Update();
+                voto.AgregarVoto();
             }
+
+            if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
+            {
+                Session.Remove("CategoriaACorregir");
+                Session.Remove("CorregirDesdeResumen");
+                Response.Redirect("ResumenVotos.aspx");
+                Session["nominadoSeleccionado"] = null;
+                return;
+            }
+
+            indiceCategoriaActual++;
+            indiceNominadoActual += 3;
+
+            Session["indiceCategorias"] = indiceCategoriaActual;
+            Session["indiceNominados"] = indiceNominadoActual;
+            Session["nominadoSeleccionado"] = null;
+
+            CargarCategorias(indiceCategoriaActual);
+            CargarNominados(indiceNominadoActual);
+
+            //updtPnl.Update();
         }
         protected void BotonAnterior_Click(object sender, EventArgs e)
         {
@@ -151,11 +163,6 @@ namespace web
 
             int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
             int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
-
-            if (indiceCategoriaActual == 0)
-            {
-                return;
-            }
 
             indiceCategoriaActual--;
             indiceNominadoActual -= 3;
@@ -172,26 +179,16 @@ namespace web
                 return;
             }
 
-            ENVotaciones voto = new ENVotaciones
-            {
-                DiscordId = Usuario.IdDiscord,
-                CategoriaId = (indiceCategoriaActual + 1),
-                NominadoId = nominadoVotadoId
-            };
+            Session["nominadoSeleccionado"] = nominadoVotadoId;
+            Session["indiceCategorias"] = indiceCategoriaActual;
+            Session["indiceNominados"] = indiceNominadoActual;
 
-            if (voto.EliminarVoto())
-            {
-                Session["nominadoSeleccionado"] = null;
-                Session["indiceCategorias"] = indiceCategoriaActual;
-                Session["indiceNominados"] = indiceNominadoActual;
+            CargarCategorias(indiceCategoriaActual);
+            CargarNominados(indiceNominadoActual);
 
-                CargarCategorias(indiceCategoriaActual);
-                CargarNominados(indiceNominadoActual);
-
-                // updtPnl.Update();
-            }
+            //updtPnl.Update();
         }
-        protected void btnContinuar_Click(object sender, EventArgs e)
+        protected void BtnContinuar_Click(object sender, EventArgs e)
         {
             //Response.Redirect("ResumenVotos.aspx");
             Response.Redirect("GraciasPorVotar.aspx");

@@ -44,7 +44,7 @@ namespace web
             //}
             //else
             //{
-            //    if (Usuario.VotosUsuario() == 10) // 10 o las categorias que sean
+            //    if (Session["VotacionFinalizada"] == true)
             //    {
             //        Response.Redirect("GraciasPorVotar.aspx");
             //    }

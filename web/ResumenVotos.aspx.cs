@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,6 +27,13 @@ namespace web
                         Session["Usuario"] = usuarioRecuperado;
                     }
                 }
+
+                if (Session["VotacionFinalizada"] != null && (bool)Session["VotacionFinalizada"])
+                {
+                    Response.Redirect("GraciasPorVotar.aspx");
+                    return;
+                }
+
                 //ENVotaciones votacionesUsuario = new ENVotaciones();
                 //DataSet dataSet = votacionesUsuario.NominadosSeleccionadosPorElUsuario(Usuario.IdDiscord);
                 //rpt.DataSource = dataSet;
@@ -47,6 +55,19 @@ namespace web
         }
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
+            if (Usuario == null)
+            {
+                Response.Redirect("LoginDiscord.aspx");
+                return;
+            }
+
+            if (Usuario.VotosUsuario() == 0)
+            {
+                //errorLabel.Text = "No has votado en ninguna categoría";
+                return;
+            }
+
+            Session["VotacionFinalizada"] = true;
             Response.Redirect("GraciasPorVotar.aspx");
         }
     }

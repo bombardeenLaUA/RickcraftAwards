@@ -91,27 +91,21 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scrpMng" runat="server" />
-
         <div class="contenedor-pagem">
             <div class="izq-container">
                 <asp:ImageButton ID="ImgTitulo" runat="server" ImageUrl="files/titulo.png" CssClass="imagen-logo" OnClick="BotonTitulo_Click" />
             </div>
-
-            <div class="text-center">BIENVENIDOS</div>
-            
+            <div class="text-center">BIENVENIDO</div>
             <div class="usuario-container">
-                <span class="nombre-usuario">Nombre Usuario</span>
+                <span class="nombre-usuario"></span>
                 <img src="files/usuario.png" alt="Usuario" />
             </div>
-
         </div>
         <hr class="hrpagem" />
-
         <div class="contenido">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
     </form>
 </body>
 </html>

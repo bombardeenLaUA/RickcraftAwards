@@ -88,7 +88,6 @@ namespace web
                 Expires = DateTime.Now.AddYears(-1)
             };
             Response.Cookies.Add(userCookie);
-
             Response.Redirect("Inicio.aspx");
         }
         protected void BotonTitulo_Click(object sender, EventArgs e)

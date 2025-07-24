@@ -78,6 +78,7 @@
     <Content Include="files\minecraft-dungeons.3840x2160.mp4" />
     <Content Include="files\rickcraft.ico" />
     <Content Include="files\titulo.png" />
+    <Content Include="files\usuario.png" />
     <Content Include="GraciasPorVotar.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="LoginDiscord.aspx" />
