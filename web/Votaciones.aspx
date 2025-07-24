@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Rickcraft Awards | Votaciones" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Votaciones.aspx.cs" Inherits="web.Votaciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-       
         @font-face {
             font-family: 'Minecrafter';
             src: url(files/fonts/Minecrafter.Reg.ttf) format(truetype);
@@ -57,6 +56,7 @@
             width: 100%;
             margin-top: 24px;
         }
+
         .boton1 {
             background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 25%, #4CAF50 50%, #388E3C 75%, #2E7D32 100%);
             color: white;
@@ -119,6 +119,7 @@
                 border-radius: 12px 12px 0 0;
             }
         }
+
         /* tablets */
         @media (min-width: 481px) and (max-width: 900px) {
             .candidatos-container {
@@ -138,6 +139,7 @@
                 border-radius: 14px 14px 0 0;
             }
         }
+
         /* portátiles/pantallas medianas */
         @media (min-width: 901px) and (max-width: 1199px) {
             .candidatos-container {
@@ -156,6 +158,7 @@
                 border-radius: 16px 16px 0 0;
             }
         }
+
         /* pantallas grandes */
         @media (min-width: 1200px) and (max-width: 1919px) {
             .candidatos-container {
@@ -174,6 +177,7 @@
                 border-radius: 18px 18px 0 0;
             }
         }
+
         /* pantallas extra grandes */
         @media (min-width: 1920px) {
             .candidatos-container {
@@ -192,6 +196,7 @@
                 border-radius: 22px 22px 0 0;
             }
         }
+
         .candidatos-container {
             display: flex;
             justify-content: center;
@@ -246,16 +251,16 @@
                 max-width: 98vw;
             }
         }
+
         /* tablets */
-        @media (max-width: 768px) { }
+        @media (max-width: 768px) {}
+
         /* portátiles/pantallas medianas */
-        @media (min-width: 769px) and (max-width: 1199px) {
-            
-        }
+        @media (min-width: 769px) and (max-width: 1199px) {}
            
         /* pantallas grandes */
-        @media (min-width: 1920px) {
-        }
+        @media (min-width: 1920px) {}
+
         .candidatos-container {
             display: flex;
             justify-content: center;
@@ -352,8 +357,7 @@
                 120deg,
                 rgba(255, 255, 255, 0) 0%,
                 rgba(255, 255, 255, 0.6) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
+                rgba(255, 255, 255, 0) 100%);
             transform: rotate(25deg);
             animation: shineMove 1.3s ease-out forwards;
             pointer-events: none;
@@ -367,6 +371,7 @@
                 left: 135%;
             }
         }
+
         .candidato.seleccionado .candidato-boton {
             background: linear-gradient(135deg, #FFD700 0%, #FFF176 100%);
             color: #222;

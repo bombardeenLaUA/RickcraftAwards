@@ -1,14 +1,11 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="web.Page" %>
-
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" href="files/rickcraft.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="files/rickcraft.ico" type="image/x-icon" />
     <title></title>
-    
         <style>
             @font-face {
                 font-family: sans-serif;
@@ -25,6 +22,7 @@
                 font-family: sans-serif;
                 color: #ccc; 
             }
+
             .usuario-container {
                 width: 400px;
                 display: flex;
@@ -44,7 +42,6 @@
 
             .nombre-usuario {
                 font-size: 1em;
-
                 /* nombre largo */
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -70,6 +67,7 @@
                 border: none;
                 border-top: 2px solid #ccc;
             }
+
             .contenido {
                 padding-top: 20px;
             }
@@ -82,11 +80,16 @@
                 object-fit: contain;
             }
 
+            .img-user {
+                max-height: 20%;
+                max-width: 20%;
+                height: auto;
+                width: auto;
+                object-fit: contain;
+            }
         </style>
-
     <asp:ContentPlaceHolder ID="head" runat="server">  
     </asp:ContentPlaceHolder>
-    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -98,7 +101,7 @@
             <div class="text-center">BIENVENIDO</div>
             <div class="usuario-container">
                 <span class="nombre-usuario"></span>
-                <img src="files/usuario.png" alt="Usuario" />
+                <asp:ImageButton ID="ImageUser" runat="server" ImageUrl="files/usuario.png" CssClass="img-user" OnClick="BotonLogin_Click" />
             </div>
         </div>
         <hr class="hrpagem" />

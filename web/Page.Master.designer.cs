@@ -51,6 +51,15 @@ namespace web
         protected global::System.Web.UI.WebControls.ImageButton ImgTitulo;
 
         /// <summary>
+        /// Control ImageUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageUser;
+
+        /// <summary>
         /// Control ContentPlaceHolder1.
         /// </summary>
         /// <remarks>

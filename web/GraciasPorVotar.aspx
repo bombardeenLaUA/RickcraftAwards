@@ -41,7 +41,6 @@
             animation: trofeo-pop 0.7s ease-out;
         }
 
-
         @keyframes trofeo-pop {
             0% { transform: scale(0.7) rotate(-5deg); opacity: 0.5; }
             60% { transform: scale(1.2) rotate(5deg); opacity: 1; }
@@ -124,7 +123,6 @@
         }
     </style>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <video class="fondo-gracias" autoplay muted loop>
         <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
@@ -140,12 +138,9 @@
         </div>
         <asp:Button ID="BotonInicio" runat="server" CssClass="gracias-boton" Text="Volver al inicio" OnClick="BotonInicio_Click" />
     </div>
-    <!-- animacion trofeo hover (pako nose como coño sabes js es complicadisimo) -->
-   
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const trofeo = document.querySelector('.gracias-trofeo');
-
             trofeo.addEventListener('mouseenter', () => {
                 trofeo.classList.remove('animate-trofeo');
                 // Forzar reflow para reiniciar la animación
@@ -154,6 +149,4 @@
             });
         });
     </script>
-
 </asp:Content>
-

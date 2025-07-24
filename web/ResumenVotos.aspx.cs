@@ -64,6 +64,7 @@ namespace web
             if (Usuario.VotosUsuario() == 0)
             {
                 //errorLabel.Text = "No has votado en ninguna categoría";
+                //errorLabel.Visible = true;
                 return;
             }
 

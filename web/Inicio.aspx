@@ -2,13 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            
             @font-face {
                 font-family: 'Minecrafter';
                 src: url('files/fonts/Minecrafter.Reg.ttf') format('truetype');
                 font-weight: normal;
                 font-style: normal;
             }
+
             @font-face {
                 font-family: 'Minecraft';
                 src: url('files/fonts/Minecraft.ttf') format('truetype');
@@ -148,16 +148,15 @@
                     right: 1vw;
                     white-space: nowrap; 
                 }
-                
                 .centrado {
                     padding: 1vh;
                 }
-                
                 .minecraft-button {
                     padding: 10px 16px; 
                     font-size: 16px;
                 }
             }
+
             /* tablets */
             @media (max-width: 768px) {
                 .centrado { 
@@ -170,9 +169,9 @@
                     font-size: 12px; 
                 }
             }
+
             /* portátiles/pantallas medianas */
             @media (min-width: 769px) and (max-width: 1199px) {
-
                 .centrado { 
                     padding: 2vh;
                 }
@@ -189,23 +188,19 @@
                 h1.título {
                     font-size: 120px;
                 }
-                
                 h1.mejores {
                     font-size: 50px;
                 }
-                
                 .minecraft-button {
                     font-size: 40px;
                     padding: 16px 28px; 
                 }
-                
                 .creditos {
                     font-size: 24px;
                 }
             }
         </style>    
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <meta name="google" content="notranslate"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
