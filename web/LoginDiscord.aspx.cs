@@ -56,7 +56,7 @@ namespace web
                             Discriminator = userData.discriminator
                         };
 
-                        bool usuarioGuardado = usuarioLogeado.AgregarUsuario();
+                        usuarioLogeado.AgregarUsuario();
 
                         if (usuarioLogeado != null)
                         {

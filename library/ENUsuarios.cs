@@ -35,7 +35,7 @@ namespace library
         public bool AgregarUsuario()
         {
             CADUsuarios cad = new CADUsuarios();
-            return cad.AgregarUsuario(this);
+            return cad.AgregarUsuario(IdDiscord, Nombre);
         }
         public ENUsuarios ObtenerUsuario(string idDiscord)
         {

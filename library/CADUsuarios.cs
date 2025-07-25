@@ -16,7 +16,7 @@ namespace library
         {
             constring = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
         }
-        public bool AgregarUsuario(ENUsuarios usuario)
+        public bool AgregarUsuario(string idDsc, string nombre)
         {
             bool check = false;
             SqlConnection con = new SqlConnection(constring);
@@ -26,15 +26,15 @@ namespace library
                 con.Open();
 
                 SqlCommand cmdCheck = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE DiscordId = @id_discord", con);
-                cmdCheck.Parameters.AddWithValue("@id_discord", usuario.IdDiscord);
+                cmdCheck.Parameters.AddWithValue("@id_discord", idDsc);
 
                 int count = (int)cmdCheck.ExecuteScalar();
 
                 if (count == 0)
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (DiscordId, Nombre) VALUES (@id_discord, @nombre)", con);
-                    cmd.Parameters.AddWithValue("@id_discord", usuario.IdDiscord);
-                    cmd.Parameters.AddWithValue("@nombre", usuario.Nombre);
+                    cmd.Parameters.AddWithValue("@id_discord", idDsc);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
 
                     check = cmd.ExecuteNonQuery() > 0;
                 }
