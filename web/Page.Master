@@ -14,14 +14,29 @@
                 font-style: normal;
             }
 
+            @keyframes animated-gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
             .contenedor-pagem {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 15px 25px;
-                background-color: #2c3e50; 
+                background: linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);
                 font-family: sans-serif;
-                color: #ccc; 
+                color: #ccc;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+                animation: animated-gradient 10s ease infinite;
+                background-size: 200% 200%;
             }
 
             .usuario-container {
@@ -62,12 +77,6 @@
                 text-align: center;
                 font-size: 1.6em;
                 font-weight: bold;
-            }
-
-            .hrpagem {
-                margin: 0;
-                border: none;
-                border-top: 2px solid #ccc;
             }
 
             .contenido {
@@ -113,7 +122,6 @@
                 <asp:LinkButton ID="BotonCerrar" runat="server" CssClass="btnCerrarSesion" OnClick="BotonCerrarSesion_Click" Visible="false"><i class="fas fa-sign-out-alt" title="Cerrar Sesión"></i></asp:LinkButton>
             </div>
         </div>
-        <hr class="hrpagem" />
         <div class="contenido">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
