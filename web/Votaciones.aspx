@@ -402,7 +402,7 @@
     </div>
 
     <div class="boton-container">
-        <asp:Button ID="btnContinuar" runat="server" CssClass="boton1" Text="Continuar" OnClick="BtnContinuar_Click" />
+        <asp:Button ID="btnContinuar" runat="server" CssClass="boton1" Text="Continuar" OnClick="BtnContinuar_Click" ToolTip="Continuar"/>
     </div>  
 
     <video class="fondo" autoplay muted loop>

@@ -136,7 +136,7 @@
             <br><br> Gracias por formar parte de los <b>Rickcraft Awards</b>.
             <br><span>¡Mucha suerte a tus favoritos!</span>
         </div>
-        <asp:Button ID="BotonInicio" runat="server" CssClass="gracias-boton" Text="Volver al inicio" OnClick="BotonInicio_Click" />
+        <asp:Button ID="BotonInicio" runat="server" CssClass="gracias-boton" Text="Volver al inicio" OnClick="BotonInicio_Click" ToolTip="Ir al inicio"/>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {

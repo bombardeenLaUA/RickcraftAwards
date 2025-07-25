@@ -104,7 +104,7 @@
         <asp:ScriptManager ID="scrpMng" runat="server" />
         <div class="contenedor-pagem">
             <div class="izq-container">
-                <asp:ImageButton ID="ImgTitulo" runat="server" ImageUrl="files/titulo.png" CssClass="imagen-logo" OnClick="BotonTitulo_Click" />
+                <asp:ImageButton ID="ImgTitulo" runat="server" ImageUrl="files/titulo.png" CssClass="imagen-logo" OnClick="BotonTitulo_Click" ToolTip="Rickcraft Awards"/>
             </div>
             <div class="text-center">BIENVENIDO</div>
             <div class="usuario-container">
