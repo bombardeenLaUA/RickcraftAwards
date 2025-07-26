@@ -48,7 +48,11 @@ namespace web
                 }
                 else
                 {
-                    int fallback = Usuario.Discriminator % 5;
+                    int fallback = 0;
+                    if (int.TryParse(Usuario.Discriminator, out int discriminatorValue))
+                    {
+                        fallback = discriminatorValue % 5;
+                    }
                     avatarUrl = $"https://cdn.discordapp.com/embed/avatars/{fallback}.png";
                 }
                 ImageUser.ImageUrl = avatarUrl;

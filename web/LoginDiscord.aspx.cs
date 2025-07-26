@@ -48,9 +48,11 @@ namespace web
                         string discordId = userData.id;
                         string nombre = userData.global_name ?? userData.username;
 
-                        ENUsuarios usuarioLogeado = new ENUsuarios();
-                        usuarioLogeado.IdDiscord = discordId;
-                        usuarioLogeado.Nombre = nombre;
+                        ENUsuarios usuarioLogeado = new ENUsuarios
+                        {
+                            IdDiscord = discordId,
+                            Nombre = nombre
+                        };
 
                         bool usuarioGuardado = usuarioLogeado.AgregarUsuario();
 

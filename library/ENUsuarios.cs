@@ -26,8 +26,8 @@ namespace library
             get { return _avatarHash; }
             set { _avatarHash = value; }
         }
-        private int _discriminator;
-        public int Discriminator
+        private string _discriminator;
+        public string Discriminator
         {
             get { return _discriminator; }
             set { _discriminator = value; }
