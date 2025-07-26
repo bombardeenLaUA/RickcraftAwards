@@ -31,12 +31,19 @@
                 align-items: center;
                 justify-content: space-between;
                 padding: 15px 25px;
-                background: linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);
+
+                /*fondo con menos opacidad y desenfoque*/
+                background: linear-gradient(to left, rgba(26, 26, 26, 0.6), rgba(100, 100, 100, 0.4), rgba(26, 26, 26, 0.6));
+                background-size: 200% 200%;
+                animation: animated-gradient 10s ease infinite;
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+
+
                 font-family: sans-serif;
                 color: #ccc;
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-                animation: animated-gradient 10s ease infinite;
-                background-size: 200% 200%;
+                
             }
 
             .usuario-container {
