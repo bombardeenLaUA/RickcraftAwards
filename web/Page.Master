@@ -33,15 +33,17 @@
                 padding: 15px 25px;
 
                 /*fondo con menos opacidad y desenfoque*/
-                background: rgba(26, 26, 26, 0.6);
+                background: linear-gradient(to left, rgba(26, 26, 26, 0.6), rgba(100, 100, 100, 0.4), rgba(26, 26, 26, 0.6));
+                background-size: 200% 200%;
+                animation: animated-gradient 10s ease infinite;
                 backdrop-filter: blur(6px);
                 -webkit-backdrop-filter: blur(6px);
+
 
                 font-family: sans-serif;
                 color: #ccc;
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-                animation: animated-gradient 10s ease infinite;
-                background-size: 200% 200%;
+                
             }
 
             .usuario-container {
