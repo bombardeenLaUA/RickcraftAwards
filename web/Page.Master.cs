@@ -26,17 +26,20 @@ namespace web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null && Request.Cookies["UsuarioId"] != null)
+            if (Session["Usuario"] == null && Request.Cookies["UsuarioData"] != null)
             {
-                string discordId = Request.Cookies["UsuarioId"].Value;
-                ENUsuarios usuario = new ENUsuarios();
-                ENUsuarios usuarioRecuperado = usuario.ObtenerUsuario(discordId);
+                var cookie = Request.Cookies["UsuarioData"];
 
-                if (usuarioRecuperado != null)
+                ENUsuarios usuarioRecuperado = new ENUsuarios
                 {
-                    Session["Usuario"] = usuarioRecuperado;
-                    _usuario = usuarioRecuperado;
-                }
+                    IdDiscord = cookie.Values["Id"],
+                    Nombre = cookie.Values["Nombre"],
+                    AvatarHash = cookie.Values["AvatarHash"],
+                    Discriminator = cookie.Values["Discriminator"]
+                };
+
+                Session["Usuario"] = usuarioRecuperado;
+                _usuario = usuarioRecuperado;
             }
 
             if (Usuario != null)
@@ -67,6 +70,26 @@ namespace web
                 BotonCerrar.Visible = false;
                 ImageUser.ToolTip = "Iniciar Sesión";
             }
+
+            string paginaActual = Request.Url.AbsolutePath.ToLower();
+
+            switch (paginaActual)
+            {
+                case "/inicio.aspx":
+                    lblTextCenter.Text = "BIENVENIDO";
+                    break;
+                case "/votaciones.aspx":
+                    lblTextCenter.Text = "VOTACIONES";
+                    break;
+                case "/resumenvotos.aspx":
+                    lblTextCenter.Text = "TUS VOTOS";
+                    break;
+                case "/graciasporvotar.aspx":
+                    lblTextCenter.Text = "VOTACIÓN FINALIZADA";
+                    break;
+                default:
+                    break;
+            }
         }
         protected void BotonLogin_Click(object sender, EventArgs e)
         {
@@ -94,7 +117,7 @@ namespace web
             };
             Response.Cookies.Add(sessionCookie);
 
-            HttpCookie userCookie = new HttpCookie("UsuarioId")
+            HttpCookie userCookie = new HttpCookie("UsuarioData")
             {
                 HttpOnly = true,
                 Secure = Request.IsSecureConnection,

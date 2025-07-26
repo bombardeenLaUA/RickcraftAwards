@@ -63,7 +63,11 @@ namespace web
 
                             Session["Usuario"] = usuarioLogeado;
 
-                            HttpCookie cookie = new HttpCookie("UsuarioId", usuarioLogeado.IdDiscord);
+                            HttpCookie cookie = new HttpCookie("UsuarioData");
+                            cookie.Values["Id"] = usuarioLogeado.IdDiscord;
+                            cookie.Values["Nombre"] = usuarioLogeado.Nombre;
+                            cookie.Values["AvatarHash"] = usuarioLogeado.AvatarHash ?? "";
+                            cookie.Values["Discriminator"] = usuarioLogeado.Discriminator ?? "";
                             cookie.Expires = DateTime.Now.AddDays(1);
                             Response.Cookies.Add(cookie);
 

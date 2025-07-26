@@ -122,7 +122,7 @@
             <div class="izq-container">
                 <asp:ImageButton ID="ImgTitulo" runat="server" ImageUrl="files/titulo.png" CssClass="imagen-logo" OnClick="BotonTitulo_Click" ToolTip="Rickcraft Awards"/>
             </div>
-            <div class="text-center">BIENVENIDO</div>
+            <asp:Label ID="lblTextCenter" runat="server" CssClass="text-center"></asp:Label>
             <div class="usuario-container">
                 <asp:Label ID="lblNombreUser" runat="server" CssClass="nombre-usuario" Visible="false"></asp:Label>
                 <asp:ImageButton ID="ImageUser" runat="server" ImageUrl="files/usuario.png" CssClass="img-user" OnClick="BotonLogin_Click" ToolTip="Iniciar Sesión"/>
