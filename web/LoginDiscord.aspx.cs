@@ -48,18 +48,17 @@ namespace web
                         string discordId = userData.id;
                         string nombre = userData.global_name ?? userData.username;
 
-                        ENUsuarios usuarioLogeado = new ENUsuarios
-                        {
-                            IdDiscord = discordId,
-                            Nombre = nombre,
-                            AvatarHash = userData.avatar,
-                            Discriminator = userData.discriminator
-                        };
+                        ENUsuarios usuarioLogeado = new ENUsuarios();
+                        usuarioLogeado.IdDiscord = discordId;
+                        usuarioLogeado.Nombre = nombre;
 
-                        usuarioLogeado.AgregarUsuario();
+                        bool usuarioGuardado = usuarioLogeado.AgregarUsuario();
 
-                        if (usuarioLogeado != null)
+                        if (usuarioGuardado)
                         {
+                            usuarioLogeado.AvatarHash = userData.avatar;
+                            usuarioLogeado.Discriminator = userData.discriminator;
+
                             Session["Usuario"] = usuarioLogeado;
 
                             HttpCookie cookie = new HttpCookie("UsuarioId", usuarioLogeado.IdDiscord);
@@ -76,6 +75,10 @@ namespace web
                             {
                                 Response.Redirect("Inicio.aspx");
                             }
+                        }
+                        else
+                        {
+                            Response.Write("Error al guardar el usuario en la base de datos.");
                         }
                     }
                     catch (Exception ex)

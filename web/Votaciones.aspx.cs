@@ -129,7 +129,10 @@ namespace web
                     NominadoId = (int)nominadoSeleccionadoId
                 };
 
-                voto.AgregarVoto();
+                if (!voto.AgregarVoto())
+                {
+                    return;
+                }
             }
 
             if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
