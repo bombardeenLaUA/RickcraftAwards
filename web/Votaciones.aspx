@@ -50,11 +50,60 @@
         }
 
         .boton-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
             width: 100%;
+            height: auto;
             margin-top: 24px;
+            margin-bottom: 48px;
+        }
+
+        .boton-container .boton1:first-child {
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 25%, #4CAF50 50%, #388E3C 75%, #2E7D32 100%);
+            color: white;
+            padding: 12px 20px;
+            letter-spacing: 1px;
+            border: 3px solid;
+            border-color: #81C784 #2E7D32 #2E7D32 #81C784;
+            font-family: 'Minecrafter';
+            font-size: clamp(18px, 4vw, 35px); 
+            cursor: pointer;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.3),
+                inset -2px -2px 0px rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.4);
+            gap: 8px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            margin-top: 3vh;
+            position: relative;
+            text-shadow: 0 0 30px white;
+            position: absolute;
+            left: 120px;
+            top: 0;
+        }
+
+        .boton-container .boton1:last-child {
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 25%, #4CAF50 50%, #388E3C 75%, #2E7D32 100%);
+            color: white;
+            padding: 12px 20px;
+            letter-spacing: 1px;
+            border: 3px solid;
+            border-color: #81C784 #2E7D32 #2E7D32 #81C784;
+            font-family: 'Minecrafter';
+            font-size: clamp(18px, 4vw, 35px); 
+            cursor: pointer;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.3),
+                inset -2px -2px 0px rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.4);
+            gap: 8px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            margin-top: 3vh;
+            position: relative;
+            text-shadow: 0 0 30px white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
         }
 
         .boton1 {
@@ -378,6 +427,47 @@
             border-color: #FFD700;
             box-shadow: 0 0 16px #FFD70088;
         }
+
+        .boton2 {
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 25%, #4CAF50 50%, #388E3C 75%, #2E7D32 100%);
+            color: white;
+            padding: 12px 20px;
+            letter-spacing: 1px;
+            border: 3px solid;
+            border-color: #81C784 #2E7D32 #2E7D32 #81C784;
+            font-family: 'Minecrafter';
+            font-size: clamp(18px, 4vw, 35px); 
+            cursor: pointer;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.3),
+                inset -2px -2px 0px rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.4);
+            gap: 8px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            margin-top: 3vh;
+            position: relative;
+            text-shadow: 0 0 30px white;
+        }
+
+        .boton2:hover {
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 25%, #66BB6A 50%, #4CAF50 75%, #388E3C 100%);
+            border-color: #A5D6A7 #1B5E20 #1B5E20 #A5D6A7;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.4),
+                inset -2px -2px 0px rgba(0,0,0,0.4),
+                0 6px 12px rgba(0,0,0,0.5);
+            transform: translateY(-1px);
+        }
+
+        .boton2:active {
+            background: linear-gradient(135deg, #388E3C 0%, #4CAF50 25%, #388E3C 50%, #2E7D32 75%, #1B5E20 100%);
+            border-color: #2E7D32 #81C784 #81C784 #2E7D32;
+            box-shadow: 
+                inset -2px -2px 0px rgba(255,255,255,0.2),
+                inset 2px 2px 0px rgba(0,0,0,0.4),
+                0 2px 4px rgba(0,0,0,0.3);
+            transform: translateY(1px);
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -402,6 +492,7 @@
     </div>
 
     <div class="boton-container">
+        <asp:Button ID="btnAnterior" runat="server" CssClass="boton1" Text="Anterior" OnClick="BotonAnterior_Click" ToolTip="Categoría anterior"/>
         <asp:Button ID="btnContinuar" runat="server" CssClass="boton1" Text="Continuar" OnClick="BtnContinuar_Click" ToolTip="Continuar"/>
     </div>  
 

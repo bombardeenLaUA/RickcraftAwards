@@ -63,6 +63,7 @@ namespace web
                 lblNombreUser.Text = Usuario.Nombre;
                 BotonCerrar.Visible = true;
                 ImageUser.ToolTip = Usuario.Nombre;
+                ImageUser.Enabled = false;
             }
             else
             {

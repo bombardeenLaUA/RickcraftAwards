@@ -93,7 +93,7 @@ namespace web
             ENNominados nominado3 = new ENNominados();
 
             nominado1.ObtenerNominado((indice + 1));
-            nominado2.ObtenerNominado((indice + 2)); 
+            nominado2.ObtenerNominado((indice + 2));
             nominado3.ObtenerNominado((indice + 3));
 
             // Asignar los datos de los nominados a los controles de la interfaz
