@@ -18,3 +18,5 @@
 *.json
 /library/bin/Debug
 /packages
+*.mdf
+*.ldf

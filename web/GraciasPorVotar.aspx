@@ -125,7 +125,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <video class="fondo-gracias" autoplay muted loop>
-        <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
+        <source src="files/GraciasPorVotar.mp4" type="video/mp4">
     </video>
     <div class="gracias-container">
         <img src="https://imgs.search.brave.com/gyl2Mx8k3hBdrkwewcFBuwFpMGmJHvybg0fkqDkv2ww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wLm5v/dmFza2luLm1lLzUy/Nzg5ODM2MTAucG5n/P2NsYXNzPXRodW1i/bmFpbA" alt="Trofeo" class="gracias-trofeo animate-trofeo" />
