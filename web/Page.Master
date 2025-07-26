@@ -31,7 +31,12 @@
                 align-items: center;
                 justify-content: space-between;
                 padding: 15px 25px;
-                background: linear-gradient(to right, #1a1a1a, #333333, #1a1a1a);
+
+                /*fondo con menos opacidad y desenfoque*/
+                background: rgba(26, 26, 26, 0.6);
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+
                 font-family: sans-serif;
                 color: #ccc;
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
