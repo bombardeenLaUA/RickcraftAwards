@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="Rickcraft Awards | Votos Realizados" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="GraciasPorVotar.aspx.cs" Inherits="web.GraciasPorVotar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('files/fonts/Minecraft.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -50,12 +57,12 @@
         .gracias-titulo {
             color: #FFD700;
             font-size: clamp(32px, 7vw, 80px);
-            text-shadow: 0 0 15px #fff, 0 0 10px #FFD700;
             margin-bottom: 16px;
             letter-spacing: 1.5px;
             text-align: center;
+            font-family: Minecrafter;
         }
-
+        
         .gracias-mensaje {
             background: rgba(34, 40, 49, 0.95);
             color: #f5f5f5;
@@ -129,7 +136,7 @@
     </video>
     <div class="gracias-container">
         <img src="https://imgs.search.brave.com/gyl2Mx8k3hBdrkwewcFBuwFpMGmJHvybg0fkqDkv2ww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wLm5v/dmFza2luLm1lLzUy/Nzg5ODM2MTAucG5n/P2NsYXNzPXRodW1i/bmFpbA" alt="Trofeo" class="gracias-trofeo animate-trofeo" />
-        <div class="gracias-titulo">¡GRACIAS POR VOTAR!</div>
+        <div class="gracias-titulo">GRACIAS POR VOTAR</div>
         <div class="gracias-mensaje">
             Hemos registrado tus votos con éxito.
             <br> Tus votos ya no podrán ser modificados.

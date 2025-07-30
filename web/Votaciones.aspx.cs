@@ -193,8 +193,8 @@ namespace web
         }
         protected void BtnContinuar_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("ResumenVotos.aspx");
-            Response.Redirect("GraciasPorVotar.aspx");
+            Response.Redirect("ResumenVotos.aspx");
+            //Response.Redirect("GraciasPorVotar.aspx");
         }
     }
 }
