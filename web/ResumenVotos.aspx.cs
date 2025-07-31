@@ -71,5 +71,9 @@ namespace web
             Session["VotacionFinalizada"] = true;
             Response.Redirect("GraciasPorVotar.aspx");
         }
+        protected void BtnContinuar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GraciasPorVotar.aspx");
+        }
     }
 }
