@@ -7,7 +7,6 @@
             font-weight: normal;
             font-style: normal;
         }
-
         
         .fondo {
             position: fixed;
@@ -37,7 +36,7 @@
             font-size: clamp(30px, 10vw, 100px);
             letter-spacing: 1px;
             text-shadow: 0 0 100px rgba(255, 255, 255, 0.8);
-            margin-top: 70px;
+            margin-top: 40px;
             margin-bottom: 0;
         }
 
@@ -49,7 +48,7 @@
             margin-bottom: 20px;
         }
 
-        .noseque-container {
+        .boton-container {
             justify-content: center;
             align-items: center;
             display: flex;
@@ -71,7 +70,7 @@
                 0 4px 8px rgba(0,0,0,0.4);
             gap: 8px;
             text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
-            margin-top: 3vh;
+            margin-top: 1vh;
             position: relative;
             text-shadow: 0 0 30px white;
         }
@@ -100,12 +99,13 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 1fr);
-            gap: 32px;
+            column-gap: 2px;
+            row-gap: 0;
             margin: 40px auto 0 auto;
             max-width: 1400px;
             padding: 0 24px;
-            padding-bottom: 32px;
         }
+
         .resumen-categoria {
             background: linear-gradient(135deg, #222 0%, #444 100%);
             border: 3px solid #81C784;
@@ -120,35 +120,43 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: box-shadow 0.2s, border-color 0.2s;
             aspect-ratio: 1/1;
             min-height: 220px;
             max-height: 320px;
+            min-height: 70%;
+            max-height: 70%;
+            transform: scale(1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
+
         .resumen-categoria .nombre-categoria {
             font-size: 1.3em;
             margin-bottom: 12px;
             color: #FFD700;
             text-shadow: 0 0 12px #FFD70088;
         }
+
         .resumen-categoria .nombre-nominado {
             font-size: 1.1em;
             color: #fff;
             margin-bottom: 8px;
         }
+
         .resumen-categoria .img-nominado {
-            width: 80%;
-            height: 80%;
+            width: 70%;
+            height: 70%;
             object-fit: cover;
             border-radius: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 18px;
             box-shadow: 0 2px 8px #2228;
         }
+
         .resumen-categoria:hover {
             border-color: #FFD700;
             box-shadow: 0 0 32px #FFD70088, 0 8px 24px #2228;
-            transform: scale(1.04);
+            transform: scale(1.05);
         }
+
         .resumen-categoria a {
             display: flex;
             flex-direction: column;
@@ -160,15 +168,12 @@
             text-decoration: none;
             color: inherit;
         }
-
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <video class="fondo" autoplay muted loop>
         <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
     </video>
-
     <h1 class="titulo">MIS VOTOS</h1>
     <h2 class="subtitulo">Esta es tu ultima oportunidad para cambiar tus votos</h2>
     <div class="resumen-grid">
@@ -213,7 +218,7 @@
                 <div class="nombre-nominado">Nominado 8</div>
         </div>
     </div>
-    <div class="noseque-container">
+    <div class="boton-container">
         <asp:Button ID="BotonTerminarVotacion" runat="server" CssClass="terminar-boton" Text="Terminar votacion" OnClick="BtnContinuar_Click" ToolTip="Terminar votación"/>
     </div>
 </asp:Content>
