@@ -232,7 +232,7 @@
             border: 3px solid #81C784;
             border-radius: 18px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            padding: 0 0 32px 0; /* espacio abajo de la imagen */
+            padding-bottom: 32px;
             min-width: 400px;    /* tamaño ancho */
             max-width: 440px;
             text-align: center;
@@ -297,7 +297,7 @@
             border-radius: 18px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.3);
             padding: 0 0 32px 0; /* espacio abajo de la imagen */
-            min-width: 400px;    /* tamaño ancho */
+            min-width: 400px;    
             text-align: center;
             cursor: pointer;
             transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.2s;
