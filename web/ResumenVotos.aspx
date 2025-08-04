@@ -120,7 +120,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: box-shadow 0.2s, border-color 0.2s.resumen-categoria;
+            transition: box-shadow 0.2s, border-color 0.2s;
             aspect-ratio: 1/1;
             min-height: 220px;
             max-height: 320px;
