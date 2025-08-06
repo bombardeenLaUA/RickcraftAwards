@@ -172,50 +172,50 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <video class="fondo" autoplay muted loop>
-        <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
+        <source src="files/fondo resumen.mp4" type="video/mp4">
     </video>
     <h1 class="titulo">MIS VOTOS</h1>
     <h2 class="subtitulo">Esta es tu ultima oportunidad para cambiar tus votos</h2>
     <div class="resumen-grid">
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 1</div>
-                <img src="https://static.eldiario.es/clip/a9054e0d-3a3e-4c0b-aae3-7e792ed744ec_16-9-aspect-ratio_default_0.jpg" class="img-nominado" alt="Nominado 1"/>
-                <div class="nombre-nominado">Nominado 1</div>
+            <div class="nombre-categoria">Categoria 1</div>
+            <img src="https://static.eldiario.es/clip/a9054e0d-3a3e-4c0b-aae3-7e792ed744ec_16-9-aspect-ratio_default_0.jpg" class="img-nominado" alt="Nominado 1"/>
+            <div class="nombre-nominado">Nominado 1</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 2</div>
-                <img src="https://staticr1.blastingcdn.com/media/photogallery/2017/3/1/660x290/b_502x220x82/el-youtuber-auronplay-conocido-en-espana-como-el-critico-de-youtube-por-sus-contenidos-humoristicos-sobre-critica_1178941.jpg" class="img-nominado" alt="Nominado 2"/>
-                <div class="nombre-nominado">Nominado 2</div>
+            <div class="nombre-categoria">Categoria 2</div>
+            <img src="https://staticr1.blastingcdn.com/media/photogallery/2017/3/1/660x290/b_502x220x82/el-youtuber-auronplay-conocido-en-espana-como-el-critico-de-youtube-por-sus-contenidos-humoristicos-sobre-critica_1178941.jpg" class="img-nominado" alt="Nominado 2"/>
+            <div class="nombre-nominado">Nominado 2</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 3</div>
-                <img src="https://imagenes.elpais.com/resizer/v2/MSH7YHJ7WJCZLIBKRMGBSWDXKY.jpg?auth=4a4a3d784931e6f4e9e0b16999de5611cc0518aa58ff77fabf2263c90fcd8382&width=414&height=311&smart=true" class="img-nominado" alt="Nominado 3"/>
-                <div class="nombre-nominado">Nominado 3</div>
+            <div class="nombre-categoria">Categoria 3</div>
+            <img src="https://imagenes.elpais.com/resizer/v2/MSH7YHJ7WJCZLIBKRMGBSWDXKY.jpg?auth=4a4a3d784931e6f4e9e0b16999de5611cc0518aa58ff77fabf2263c90fcd8382&width=414&height=311&smart=true" class="img-nominado" alt="Nominado 3"/>
+            <div class="nombre-nominado">Nominado 3</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 4</div>
-                <img src="https://imagenes.elpais.com/resizer/v2/C6FKCBBD4NXQZY7MS52NMOTKIE.jpg?auth=191ce7e999b37d6084ca529e79f7870e7a206645cb6b5891eee06e9835f20b92&width=414&height=311&smart=true" class="img-nominado" alt="Nominado 4"/>
-                <div class="nombre-nominado">Nominado 4</div>
+            <div class="nombre-categoria">Categoria 4</div>
+            <img src="https://imagenes.elpais.com/resizer/v2/C6FKCBBD4NXQZY7MS52NMOTKIE.jpg?auth=191ce7e999b37d6084ca529e79f7870e7a206645cb6b5891eee06e9835f20b92&width=414&height=311&smart=true" class="img-nominado" alt="Nominado 4"/>
+            <div class="nombre-nominado">Nominado 4</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 5</div>
-                <img src="https://noticiasdeaqui.co/wp-content/uploads/2025/06/img_3249-1.jpg?w=1024" class="img-nominado" alt="Nominado 5"/>
-                <div class="nombre-nominado">Nominado 5</div>
+            <div class="nombre-categoria">Categoria 5</div>
+            <img src="https://noticiasdeaqui.co/wp-content/uploads/2025/06/img_3249-1.jpg?w=1024" class="img-nominado" alt="Nominado 5"/>
+            <div class="nombre-nominado">Nominado 5</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 6</div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdrFgt9SIvM9b7-4pjc8oq0vY67c88WJYCOQ&s" class="img-nominado" alt="Nominado 6"/>
-                <div class="nombre-nominado">Nominado 6</div>
+            <div class="nombre-categoria">Categoria 6</div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdrFgt9SIvM9b7-4pjc8oq0vY67c88WJYCOQ&s" class="img-nominado" alt="Nominado 6"/>
+            <div class="nombre-nominado">Nominado 6</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 7</div>
-                <img src="https://i.ytimg.com/vi/RME7jMZrAv8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAh5ZpPqmsT6-3aiyg7x8_yfqxQ-w" class="img-nominado" alt="Nominado 7"/>
-                <div class="nombre-nominado">Nominado 7</div>
+            <div class="nombre-categoria">Categoria 7</div>
+            <img src="https://i.ytimg.com/vi/RME7jMZrAv8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAh5ZpPqmsT6-3aiyg7x8_yfqxQ-w" class="img-nominado" alt="Nominado 7"/>
+            <div class="nombre-nominado">Nominado 7</div>
         </div>
         <div class="resumen-categoria">
-                <div class="nombre-categoria">Categoría 8</div>
-                <img src="https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AstuteApatheticTigerBibleThump-m271m2wgbhBJQ0FR/dce2d917-3c93-4dfd-b61a-0db44a08246f/preview.jpg" class="img-nominado" alt="Nominado 8"/>
-                <div class="nombre-nominado">Nominado 8</div>
+            <div class="nombre-categoria">Categoria 8</div>
+            <img src="https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AstuteApatheticTigerBibleThump-m271m2wgbhBJQ0FR/dce2d917-3c93-4dfd-b61a-0db44a08246f/preview.jpg" class="img-nominado" alt="Nominado 8"/>
+            <div class="nombre-nominado">Nominado 8</div>
         </div>
     </div>
     <div class="boton-container">

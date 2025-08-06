@@ -54,5 +54,10 @@ namespace library
             CADVotaciones cad = new CADVotaciones();
             return cad.NominadosSeleccionadosPorElUsuario(this);
         }
+        public int ObtenerTotalVotos()
+        {
+            CADVotaciones cad = new CADVotaciones();
+            return cad.ObtenerTotalVotos();
+        }
     }
 }

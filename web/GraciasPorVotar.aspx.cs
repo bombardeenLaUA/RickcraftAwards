@@ -25,6 +25,10 @@ namespace web
                         Session["Usuario"] = usuarioRecuperado;
                     }
                 }
+
+                ENVotaciones votacion = new ENVotaciones();
+                int totalVotos = votacion.ObtenerTotalVotos();
+                lblVotos.Text = $"Votos hasta ahora: {totalVotos}";
             }
         }
         protected void BotonInicio_Click(object sender, EventArgs e)

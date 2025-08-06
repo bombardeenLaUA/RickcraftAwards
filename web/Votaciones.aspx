@@ -282,7 +282,7 @@
             justify-content: center;
             align-items: flex-start;
             gap: 56px; /*espacio entre candidatos*/
-            margin: 100px 0 140px 0;
+            margin: 100px 0 70px 0;
         }
 
         .candidato {
@@ -394,6 +394,20 @@
             border-color: #FFD700;
             box-shadow: 0 0 16px #FFD70088;
         }
+
+        .seguimiento-label {
+            font-family: 'Minecrafter', Arial, sans-serif;
+            font-size: 1.2em;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(34, 34, 34, 0.8);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            display: flex;
+            margin: 0 auto 0 auto;
+            max-width: fit-content;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -416,12 +430,11 @@
             <div class="candidato-boton">Elegir</div>
         </div>
     </div>
-
+    <asp:Label ID="lblSeguimiento" runat="server" CssClass="seguimiento-label"></asp:Label>
     <div class="boton-container">
         <asp:Button ID="btnAnterior" runat="server" CssClass="boton1 boton-anterior" Text="Anterior" OnClick="BotonAnterior_Click" ToolTip="Categoría anterior"/>
         <asp:Button ID="btnContinuar" runat="server" CssClass="boton1 boton-continuar" Text="Continuar" OnClick="BtnContinuar_Click" ToolTip="Continuar"/>
     </div>  
-
     <video class="fondo" autoplay muted loop>
         <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
     </video>

@@ -75,6 +75,7 @@
       <DependentUpon>BaseDeDatos.mdf</DependentUpon>
     </Content>
     <Content Include="files\fondo puente.mp4" />
+    <Content Include="files\fondo resumen.mp4" />
     <Content Include="files\minecraft-dungeons.3840x2160.mp4" />
     <Content Include="files\rickcraft.ico" />
     <Content Include="files\titulo.png" />

@@ -204,15 +204,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <meta name="google" content="notranslate"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <video class="fondo" autoplay muted loop aria-hidden="true">
         <source src="files/fondo puente.mp4" type="video/mp4">
     </video>
-
     <div class="centrado">
         <h1 class="título"><span translate="no">rickcraft awards</span></h1>
         <h1 class="mejores">Elige Los Mejores</h1>
         <asp:Button ID="BotonVotar" runat="server" OnClick="BotonVotar_Click" CssClass="minecraft-button" Text="Vota Ya" ToolTip="Ir a las votaciones"/>
     </div>
-    <h1 class="creditos">Awards Web hecha por: zaxx, pako y rubenzuusss</h1>
+    <h1 class="creditos">Awards Web hecha por: pako y rubenzuusss</h1>
 </asp:Content>

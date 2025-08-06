@@ -142,6 +142,7 @@
             <br> Tus votos ya no podrán ser modificados.
             <br><br> Gracias por formar parte de los <b>Rickcraft Awards</b>.
             <br><span>¡Mucha suerte a tus favoritos!</span>
+            <br><asp:Label ID="lblVotos" runat="server"></asp:Label>
         </div>
         <asp:Button ID="BotonInicio" runat="server" CssClass="gracias-boton" Text="Volver al inicio" OnClick="BotonInicio_Click" ToolTip="Ir al inicio"/>
     </div>

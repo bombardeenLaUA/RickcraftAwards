@@ -114,5 +114,25 @@ namespace library
             da.Fill(ds, "Votos");
             return ds;
         }
+        public int ObtenerTotalVotos()
+        {
+            int totalVotos = 0;
+            SqlConnection con = new SqlConnection(constring);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Votos", con);
+                totalVotos = (int)cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener total de votos: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return totalVotos;
+        }
     }
 }
