@@ -74,7 +74,7 @@ namespace web
             CargarCategorias(indiceCategorias);
             CargarNominados(indiceNominados);
 
-            lblSeguimiento.Text = $"Categoria: 1 de 8"; // 1 = {indiceCategorias + 1}
+            lblSeguimiento.Text = $"1 de 8"; // 1 = {indiceCategorias + 1}
         }
         private void CargarCategorias(int indice)
         {
