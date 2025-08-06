@@ -74,6 +74,7 @@
             text-align: center;
             text-shadow: 1px 1px 3px #000;
             margin-bottom: 32px;
+            box-shadow: 0 8px 32px #000a;
         }
         
         .gracias-mensaje span {
