@@ -83,7 +83,7 @@ namespace web
                     lblTextCenter.Text = "VOTACIONES";
                     break;
                 case "/resumenvotos.aspx":
-                    lblTextCenter.Text = "TUS VOTOS";
+                    lblTextCenter.Text = "RESUMEN";
                     break;
                 case "/graciasporvotar.aspx":
                     lblTextCenter.Text = "VOTACIÓN FINALIZADA";

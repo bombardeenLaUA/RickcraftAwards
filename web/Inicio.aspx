@@ -130,7 +130,8 @@
             .creditos {
                 position: fixed;
                 top: 100px; /* para que no se solape con el header */
-                right: 2vw;
+                right: 1vw;
+                margin-top: 10px;
                 font-size: clamp(12px, 2.5vw, 20px); 
                 font-family: 'Minecraft';
                 letter-spacing: 1px;
@@ -212,5 +213,5 @@
         <h1 class="mejores">Elige Los Mejores</h1>
         <asp:Button ID="BotonVotar" runat="server" OnClick="BotonVotar_Click" CssClass="minecraft-button" Text="Vota Ya" ToolTip="Ir a las votaciones"/>
     </div>
-    <h1 class="creditos">Awards Web hecha por: pako y rubenzuusss</h1>
+    <h1 class="creditos">Awards web hecha por: pako y rubenzuusss</h1>
 </asp:Content>
