@@ -26,17 +26,23 @@ namespace library
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Votos (DiscordId, CategoriaId, NominadoId) VALUES (@discord_id, @categoria_id, @nominado_id)", con);
+                SqlCommand cmd = new SqlCommand("UPDATE Votos SET NominadoId = @nominado_id WHERE DiscordId = @discord_id AND CategoriaId = @categoria_id", con);
+                cmd.Parameters.AddWithValue("@nominado_id", votacion.NominadoId);
                 cmd.Parameters.AddWithValue("@discord_id", votacion.DiscordId);
                 cmd.Parameters.AddWithValue("@categoria_id", votacion.CategoriaId);
-                cmd.Parameters.AddWithValue("@nominado_id", votacion.NominadoId);
 
                 int filasAfectadas = cmd.ExecuteNonQuery();
+
+                if (filasAfectadas == 0)
+                {
+                    cmd.CommandText = "INSERT INTO Votos (DiscordId, CategoriaId, NominadoId) VALUES (@discord_id, @categoria_id, @nominado_id)";
+                    filasAfectadas = cmd.ExecuteNonQuery();
+                }
                 check = filasAfectadas > 0;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar votación: " + ex.Message);
+                Console.WriteLine("Error al agregar/actualizar votación: " + ex.Message);
             }
             finally
             {
@@ -134,6 +140,48 @@ namespace library
                 con.Close();
             }
             return totalVotos;
+        }
+        public bool EliminarTODO()
+        {
+            bool check = false;
+            SqlConnection con = new SqlConnection(constring);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Votos", con);
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                check = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar todos los votos: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return check;
+        }
+        public bool Resetear()
+        {
+            bool check = false;
+            SqlConnection con = new SqlConnection(constring);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DBCC CHECKIDENT ('Votos', RESEED, 0)", con);
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                check = filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al resetear votaciones: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return check;
         }
     }
 }

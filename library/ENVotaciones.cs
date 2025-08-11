@@ -59,5 +59,15 @@ namespace library
             CADVotaciones cad = new CADVotaciones();
             return cad.ObtenerTotalVotos(this);
         }
+        public bool EliminarTODO()
+        {
+            CADVotaciones cad = new CADVotaciones();
+            return cad.EliminarTODO();
+        }
+        public bool Resetear()
+        {
+            CADVotaciones cad = new CADVotaciones();
+            return cad.Resetear();
+        }
     }
 }

@@ -127,6 +127,7 @@
             max-height: 70%;
             transform: scale(1);
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
         }
 
         .resumen-categoria .nombre-categoria {
@@ -195,7 +196,7 @@
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkBtnNominado" runat="server" CssClass="resumen-categoria" OnClick="BotonCategoria_Click" CommandArgument='<%# Eval("CategoriaId") %>'>
                         <asp:Label ID="lblCategoria" runat="server" CssClass="nombre-categoria" Text='<%# Eval("Categoria") %>'></asp:Label>
-                        <asp:Image ID="imgNominado" runat="server" CssClass="img-nominado" ImageUrl='<%# Eval("ImagenURL")%>'/>
+                        <asp:Image ID="imgNominado" runat="server" CssClass="img-nominado"/>
                         <asp:Label ID="lblNombre" runat="server" CssClass="nombre-nominado"></asp:Label>
                     </asp:LinkButton>
                 </ItemTemplate>

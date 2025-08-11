@@ -51,12 +51,9 @@ namespace web
             dtResumen.Columns.Add("Categoria", typeof(string));
             dtResumen.Columns.Add("CategoriaId", typeof(int));
 
-            foreach (DataRow categoriaRow in dtCategorias.Rows)
+            foreach (DataRow row in dtCategorias.AsEnumerable().OrderBy(r => r.Field<int>("CategoriaId")))
             {
-                DataRow newRow = dtResumen.NewRow();
-                newRow["Categoria"] = categoriaRow["Nombre"].ToString();
-                newRow["CategoriaId"] = Convert.ToInt32(categoriaRow["CategoriaId"]);
-                dtResumen.Rows.Add(newRow);
+                dtResumen.Rows.Add(row["Nombre"].ToString(), row.Field<int>("CategoriaId"));
             }
 
             rptNominados.DataSource = dtResumen;
@@ -69,19 +66,45 @@ namespace web
                 DataRowView rowView = (DataRowView)e.Item.DataItem;
                 int categoriaId = Convert.ToInt32(rowView["CategoriaId"]);
 
-                DataRow votoEncontrado = dtVotosUsuario.AsEnumerable().FirstOrDefault(row => row.Field<int>("CategoriaId") == categoriaId);
+                DataRow votoEncontrado = dtVotosUsuario.AsEnumerable()
+                    .FirstOrDefault(row => row.Field<int>("CategoriaId") == categoriaId);
 
                 Label lblNombre = (Label)e.Item.FindControl("lblNombre");
                 Image imgNominado = (Image)e.Item.FindControl("imgNominado");
 
-                if (votoEncontrado != null)
+                if (votoEncontrado != null && int.TryParse(votoEncontrado["NominadoId"].ToString(), out int nominadoId))
                 {
-                    lblNombre.Text = votoEncontrado["Nombre"].ToString();
+                    ENNominados nominado = new ENNominados();
+
+                    if (nominado.ObtenerNominado(nominadoId))
+                    {
+                        lblNombre.Text = nominado.Nombre;
+
+                        string imagePath = $"~/files/nominados/{nominado.ImagenURL}";
+                        imgNominado.ImageUrl = Page.ResolveUrl(imagePath);
+
+                        string physicalPath = Server.MapPath(imagePath);
+                        if (!System.IO.File.Exists(physicalPath))
+                        {
+                            lblNombre.Text = "Archivo no encontrado";
+                            imgNominado.ImageUrl = Page.ResolveUrl("~/files/noseleccionado.png");
+                        }
+                        else
+                        {
+                            imgNominado.AlternateText = nominado.Nombre;
+                        }
+                    }
+                    else
+                    {
+                        lblNombre.Text = "Error";
+                        imgNominado.ImageUrl = Page.ResolveUrl("~/files/noseleccionado.png");
+                        imgNominado.AlternateText = "Error";
+                    }
                 }
                 else
                 {
                     lblNombre.Text = "No seleccionado";
-                    imgNominado.ImageUrl = "files/noseleccionado.png";
+                    imgNominado.ImageUrl = Page.ResolveUrl("~/files/noseleccionado.png");
                     imgNominado.AlternateText = "No seleccionado";
                 }
             }

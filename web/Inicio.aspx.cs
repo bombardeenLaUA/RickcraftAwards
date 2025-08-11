@@ -46,7 +46,7 @@ namespace web
             {
                 if (Session["VotacionFinalizada"] != null)
                 {
-                    if ((bool)Session["VotacionFinalizada"] == true)
+                    if (Session["VotacionFinalizada"] != null && (bool)Session["VotacionFinalizada"])
                     {
                         Response.Redirect("GraciasPorVotar.aspx");
                     }
@@ -69,6 +69,9 @@ namespace web
             Session.Remove("indiceCategorias");
             Session.Remove("nominadoSeleccionado");
             Session.Remove("VotacionFinalizada");
+            ENVotaciones votos = new ENVotaciones();
+            votos.EliminarTODO();
+            votos.Resetear();
         }
     }
 }
