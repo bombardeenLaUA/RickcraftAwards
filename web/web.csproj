@@ -76,6 +76,7 @@
     </Content>
     <Content Include="files\fondo puente.mp4" />
     <Content Include="files\fondo resumen.mp4" />
+    <Content Include="files\GraciasPorVotar.mp4" />
     <Content Include="files\minecraft-dungeons.3840x2160.mp4" />
     <Content Include="files\nominados\aleexlpzz.png" />
     <Content Include="files\nominados\antooonio.png" />
@@ -93,6 +94,7 @@
     <Content Include="files\nominados\xuurrytaa.png" />
     <Content Include="files\nominados\yeyolinux.png" />
     <Content Include="files\nominados\zeri.png" />
+    <Content Include="files\noseleccionado.png" />
     <Content Include="files\rickcraft.ico" />
     <Content Include="files\titulo.png" />
     <Content Include="files\usuario.png" />
