@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,7 +14,7 @@ namespace web
     public partial class ResumenVotos : System.Web.UI.Page
     {
         public ENUsuarios Usuario => Session["Usuario"] as ENUsuarios;
-        private DataTable dtVotosUsuario;
+        private Dictionary<int, DataRow> votosPorCategoria;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +46,8 @@ namespace web
 
             ENVotaciones votacionesUsuario = new ENVotaciones();
             DataSet dsVotos = votacionesUsuario.NominadosSeleccionadosPorElUsuario(Usuario.IdDiscord);
-            dtVotosUsuario = (dsVotos != null && dsVotos.Tables.Count > 0) ? dsVotos.Tables[0] : new DataTable();
+            DataTable dtVotosUsuario = (dsVotos != null && dsVotos.Tables.Count > 0) ? dsVotos.Tables[0] : new DataTable();
+            votosPorCategoria = dtVotosUsuario.AsEnumerable().ToDictionary(row => row.Field<int>("CategoriaId"));
 
             DataTable dtResumen = new DataTable();
             dtResumen.Columns.Add("Categoria", typeof(string));
@@ -66,13 +68,10 @@ namespace web
                 DataRowView rowView = (DataRowView)e.Item.DataItem;
                 int categoriaId = Convert.ToInt32(rowView["CategoriaId"]);
 
-                DataRow votoEncontrado = dtVotosUsuario.AsEnumerable()
-                    .FirstOrDefault(row => row.Field<int>("CategoriaId") == categoriaId);
-
                 Label lblNombre = (Label)e.Item.FindControl("lblNombre");
                 Image imgNominado = (Image)e.Item.FindControl("imgNominado");
 
-                if (votoEncontrado != null && int.TryParse(votoEncontrado["NominadoId"].ToString(), out int nominadoId))
+                if (votosPorCategoria.TryGetValue(categoriaId, out DataRow votoEncontrado) && int.TryParse(votoEncontrado["NominadoId"].ToString(), out int nominadoId))
                 {
                     ENNominados nominado = new ENNominados();
 
@@ -80,7 +79,7 @@ namespace web
                     {
                         lblNombre.Text = nominado.Nombre;
 
-                        string imagePath = $"~/files/nominados/{nominado.ImagenURL}";
+                        string imagePath = $"~/{nominado.ImagenURL}";
                         imgNominado.ImageUrl = Page.ResolveUrl(imagePath);
 
                         string physicalPath = Server.MapPath(imagePath);

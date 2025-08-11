@@ -44,7 +44,7 @@ namespace library
                     nominado.NominadoId = Convert.ToInt32(reader["NominadoId"]);
                     nominado.Nombre = reader["Nombre"].ToString();
                     nominado.CategoriaId = reader["CategoriaId"].ToString();
-                    nominado.ImagenURL = "files/nominados/nominado{id}.png";
+                    nominado.ImagenURL = reader["ImagenUrl"].ToString();
                     check = true;
                 }
             }

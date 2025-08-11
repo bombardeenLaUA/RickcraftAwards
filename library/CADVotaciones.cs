@@ -127,8 +127,7 @@ namespace library
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT DiscordId COUNT(*) FROM Votos WHERE DiscordId = @discord_id", con);
-                cmd.Parameters.AddWithValue("@discord_id", en.DiscordId);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(DISTINCT DiscordId) FROM Votos", con);
                 totalVotos = (int)cmd.ExecuteScalar();
             }
             catch (Exception ex)

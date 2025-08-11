@@ -67,7 +67,6 @@ namespace web
             Session.Remove("CorregirDesdeResumen");
             Session.Remove("CategoriaACorregir");
             Session.Remove("indiceCategorias");
-            Session.Remove("nominadoSeleccionado");
             Session.Remove("VotacionFinalizada");
             ENVotaciones votos = new ENVotaciones();
             votos.EliminarTODO();

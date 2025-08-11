@@ -90,6 +90,8 @@ namespace web
 
             rptNominados.DataSource = dsNominados.Tables[0];
             rptNominados.DataBind();
+
+            hdnNominadoSeleccionado.Value = string.Empty;
         }
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
@@ -116,20 +118,29 @@ namespace web
                     return;
                 }
             }
+            else
+            {
+                ENVotaciones voto = new ENVotaciones();
+                if (voto.ObtenerVoto(Usuario.IdDiscord, (indiceCategoriaActual + 1)))
+                {
+                    if (!voto.EliminarVoto())
+                    {
+                        return;
+                    }
+                }
+            }
 
             if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
             {
                 Session.Remove("CategoriaACorregir");
                 Session.Remove("CorregirDesdeResumen");
                 Response.Redirect("ResumenVotos.aspx");
-                Session["nominadoSeleccionado"] = null;
                 return;
             }
 
             indiceCategoriaActual++;
 
             Session["indiceCategorias"] = indiceCategoriaActual;
-            Session["nominadoSeleccionado"] = null;
 
             CargarDatos();
 
@@ -155,12 +166,8 @@ namespace web
                 nominadoVotadoId = votoTemp.NominadoId;
             }
 
-            if (!votoTemp.EliminarVoto())
-            {
-                return;
-            }
+            votoTemp.EliminarVoto();
 
-            Session["nominadoSeleccionado"] = null;
             Session["indiceCategorias"] = indiceCategoriaActual;
 
             CargarDatos();
