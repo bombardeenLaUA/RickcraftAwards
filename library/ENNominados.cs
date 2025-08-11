@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +27,16 @@ namespace library
             get { return _categoriaId; }
             set { _categoriaId = value; }
         }
-        private string _imageURL;
-        public string ImageURL
+        private string _imagenURL;
+        public string ImagenURL
         {
-            get { return _imageURL; }
-            set { _imageURL = value; }
+            get { return _imagenURL; }
+            set { _imagenURL = value; }
+        }
+        public DataSet ListaNominados()
+        {
+            CADNominados cadNominados = new CADNominados();
+            return cadNominados.ListaNominados(this);
         }
         public bool ObtenerNominado(int nomId)
         {

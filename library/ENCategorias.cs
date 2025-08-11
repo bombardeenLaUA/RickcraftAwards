@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace library
@@ -30,6 +31,11 @@ namespace library
         {
             CADCategorias cadCategorias = new CADCategorias();
             return cadCategorias.ObtenerCategoria(catId, this);
+        }
+        public DataTable ListaCategorias()
+        {
+            CADCategorias cadCategorias = new CADCategorias();
+            return cadCategorias.ListaCategorias();
         }
     }
 }

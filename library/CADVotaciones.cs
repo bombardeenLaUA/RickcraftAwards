@@ -114,14 +114,15 @@ namespace library
             da.Fill(ds, "Votos");
             return ds;
         }
-        public int ObtenerTotalVotos()
+        public int ObtenerTotalVotos(ENVotaciones en)
         {
             int totalVotos = 0;
             SqlConnection con = new SqlConnection(constring);
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Votos", con);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT DiscordId COUNT(*) FROM Votos WHERE DiscordId = @discord_id", con);
+                cmd.Parameters.AddWithValue("@discord_id", en.DiscordId);
                 totalVotos = (int)cmd.ExecuteScalar();
             }
             catch (Exception ex)

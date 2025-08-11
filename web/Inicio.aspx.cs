@@ -32,27 +32,43 @@ namespace web
         }
         protected void BotonVotar_Click(object sender, EventArgs e)
         {
-            //if (Usuario == null)
-            //{
-            //    Session["LoginOrigen"] = "Votaciones";
-            //    string clientId = "1379599717624713318";
-            //    string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
-            //    string scope = "identify";
-            //    string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
+            if (Usuario == null)
+            {
+                Session["LoginOrigen"] = "Votaciones";
+                string clientId = "1379599717624713318";
+                string redirectUri = HttpUtility.UrlEncode("https://localhost:44396/LoginDiscord.aspx");
+                string scope = "identify";
+                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
 
-            //    Response.Redirect(url);
-            //}
-            //else
-            //{
-            //    if (Session["VotacionFinalizada"] == true)
-            //    {
-            //        Response.Redirect("GraciasPorVotar.aspx");
-            //    }
-            //    else
-            //    {
+                Response.Redirect(url);
+            }
+            else
+            {
+                if (Session["VotacionFinalizada"] != null)
+                {
+                    if ((bool)Session["VotacionFinalizada"] == true)
+                    {
+                        Response.Redirect("GraciasPorVotar.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("Votaciones.aspx");
+                    }
+                }
+                else
+                {
+                    Session["VotacionFinalizada"] = false;
                     Response.Redirect("Votaciones.aspx");
-            //    }
-            //}
+                }
+            }
+        }
+        protected void BotonReiniciar_Click(object sender, EventArgs e)
+        {
+            Session.Remove("CorregirDesdeResumen");
+            Session.Remove("CategoriaACorregir");
+            Session.Remove("indiceCategorias");
+            Session.Remove("nominadoSeleccionado");
+            Session.Remove("VotacionFinalizada");
         }
     }
 }

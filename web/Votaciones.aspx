@@ -29,7 +29,7 @@
             pointer-events: none;
         }
 
-        h1.titulo {
+        .titulo {
             position: relative;
             text-align: center;
             color: white;
@@ -39,14 +39,16 @@
             text-shadow: 0 0 100px rgba(255, 255, 255, 0.8);
             margin-top: 70px;
             margin-bottom: 0;
+            display: block;
         }
 
-        h2.descripcion {
+        .descripcion {
             text-align: center;
             font-size: 30px;
             position: relative;
             margin-top: 40px;
             margin-bottom: 20px;
+            display: block;
         }
 
         .boton-container {
@@ -237,6 +239,7 @@
             max-width: 440px;
             text-align: center;
             cursor: pointer;
+            text-decoration: none;
             transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, transform 0.2s;
             user-select: none;
             position: relative;
@@ -411,42 +414,45 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="titulo">Categoria</h1>
-    <h2 class="descripcion">Descripcion</h2>
-    <div class="candidatos-container">
-        <div class="candidato" onclick="seleccionarCandidato(this)">
-            <img src="https://imgs.search.brave.com/jbvSywNuWVlodEbyhNNR2HBY0Tgrk2QEqa9aRxpG5xA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZmFtb3VzYmlydGhk/YXlzLmNvbS9oZWFk/c2hvdHMvdGhlZ3Jl/ZmctMS5qcGc" class="candidato-img" alt="Candidato 1" />
-            <div class="candidato-nombre">Candidato 1</div>
-            <div class="candidato-boton">Elegir</div>
-        </div>
-        <div class="candidato" onclick="seleccionarCandidato(this)">
-            <img src="https://imgs.search.brave.com/teO-qRS8GPHmMVLKPB4-z7_G4Lp8qonBtUx49-0_iwc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLmRh/aWx5bWFpbC5jby51/ay8xcy8yMDIyLzA2/LzI4LzAyLzU3Mzcy/MTY5LTEwNzc5OTY3/LVBvcHVsYXJfV2l0/aF9oaXNfdW5pcXVl/X2FwcGVhcmFuY2Vf/YW5kX2NvbmZpZGVu/dF9hdHRpdHVkZV9I/YXNidWwtYS0zXzE2/NTYzNzk5MTY5MDIu/anBn" class="candidato-img" alt="Candidato 2" />
-            <div class="candidato-nombre">Candidato 2</div>
-            <div class="candidato-boton">Elegir</div>
-        </div>
-        <div class="candidato" onclick="seleccionarCandidato(this)">
-            <img src="https://imgs.search.brave.com/Fh_aSSPa-WedAew1u_yheViP4VcwYvz6nP24Qktu6Bw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9wZXBlLWZyb2ct/d2VhcnMtY3Jvd24t/bGlrZS1raW5nXzEy/NTA0ODYtMjE1Mi5q/cGc_c2VtdD1haXNf/aHlicmlkJnc9NzQw" class="candidato-img" alt="Candidato 3" />
-            <div class="candidato-nombre">Candidato 3</div>
-            <div class="candidato-boton">Elegir</div>
-        </div>
-    </div>
-    <asp:Label ID="lblSeguimiento" runat="server" CssClass="seguimiento-label"></asp:Label>
-    <div class="boton-container">
-        <asp:Button ID="btnAnterior" runat="server" CssClass="boton1 boton-anterior" Text="Anterior" OnClick="BotonAnterior_Click" ToolTip="Categoría anterior"/>
-        <asp:Button ID="btnContinuar" runat="server" CssClass="boton1 boton-continuar" Text="Continuar" OnClick="BtnContinuar_Click" ToolTip="Continuar"/>
-    </div>  
+    <asp:UpdatePanel ID="updtVotaciones" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <asp:Label ID="lblCategoria" runat="server" CssClass="titulo"></asp:Label>
+            <asp:Label ID="lblDescripcion" runat="server" CssClass="descripcion"></asp:Label>
+            <asp:Panel ID="pnlNominados" runat="server" CssClass="candidatos-container">
+                <asp:Repeater ID="rptNominados" runat="server">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkBtnNominado" runat="server" CssClass="candidato" OnClientClick="seleccionarCandidato(this); return false;" data-nominado-id='<%# Eval("NominadoId") %>'>
+                            <asp:Image ID="imgNominado" runat="server" CssClass="candidato-img" AlternateText="Nominado" ImageUrl='<%# Eval("ImagenURL") %>'/>
+                            <asp:Label ID="lblNominado" runat="server" CssClass="candidato-nombre" Text='<%# Eval("Nombre") %>'></asp:Label>
+                            <div class="candidato-boton">Elegir</div>
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <asp:HiddenField ID="hdnNominadoSeleccionado" runat="server" />
+            </asp:Panel>
+            <asp:Label ID="lblSeguimiento" runat="server" CssClass="seguimiento-label"></asp:Label>
+            <div class="boton-container">
+                <asp:Button ID="btnAnterior" runat="server" CssClass="boton1 boton-anterior" Text="Anterior" OnClick="BotonAnterior_Click" ToolTip="Categoría anterior"/>
+                <asp:Button ID="btnContinuar" runat="server" CssClass="boton1 boton-continuar" Text="Continuar" OnClick="BotonContinuar_Click" ToolTip="Continuar"/>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <video class="fondo" autoplay muted loop>
         <source src="files/minecraft-dungeons.3840x2160.mp4" type="video/mp4">
     </video>
     <script>
         function seleccionarCandidato(element) {
+            var nominadoId = element.getAttribute('data-nominado-id');
+            var hiddenField = document.getElementById('<%= hdnNominadoSeleccionado.ClientID %>');
             if (element.classList.contains('seleccionado')) {
                 element.classList.remove('seleccionado');
+                hiddenField.value = '';
             } else {
                 document.querySelectorAll('.candidato').forEach(function (el) {
                     el.classList.remove('seleccionado');
                 });
                 element.classList.add('seleccionado');
+                hiddenField.value = nominadoId;
             }
         }
     </script>

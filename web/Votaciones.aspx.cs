@@ -1,6 +1,7 @@
 ﻿using library;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -40,16 +41,14 @@ namespace web
 
                 if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])
                 {
-                    //btnAnterior.Visible = false;
+                    btnAnterior.Visible = false;
 
                     int indiceCategoria = Session["CategoriaACorregir"] as int? ?? 0;
-                    int indiceNominado = indiceCategoria * 3;
 
                     Session["indiceCategorias"] = indiceCategoria;
-                    Session["indiceNominados"] = indiceNominado;
 
                     CargarCategorias(indiceCategoria);
-                    CargarNominados(indiceNominado);
+                    CargarNominados(indiceCategoria);
                 }
                 else
                 {
@@ -59,22 +58,15 @@ namespace web
         }
         private void CargarDatos()
         {
-            //int indiceCategorias = Usuario.VotosUsuario();
-            int indiceCategorias = 0; // Auxiliar (el bueno es el de la linea de arriba)
-            int indiceNominados = indiceCategorias * 3;
+            int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? Usuario.VotosUsuario();
+            Session["indiceCategorias"] = indiceCategoriaActual;
 
-            Session["indiceCategorias"] = indiceCategorias;
-            Session["indiceNominados"] = indiceNominados;
+            btnAnterior.Visible = indiceCategoriaActual > 0;
 
-            if (indiceCategorias == 0)
-            {
-                //btnAnterior.Visible = false;
-            }
+            CargarCategorias(indiceCategoriaActual);
+            CargarNominados(indiceCategoriaActual);
 
-            CargarCategorias(indiceCategorias);
-            CargarNominados(indiceNominados);
-
-            lblSeguimiento.Text = $"1 de 8"; // 1 = {indiceCategorias + 1}
+            lblSeguimiento.Text = $"{indiceCategoriaActual + 1} de 8";
         }
         private void CargarCategorias(int indice)
         {
@@ -82,33 +74,22 @@ namespace web
 
             if (!categoria.ObtenerCategoria((indice + 1)))
             {
-            //   Response.Redirect("ResumenVotos.aspx");
-            //   return;
+                Response.Redirect("ResumenVotos.aspx");
+                return;
             }
 
-            // Asignar los datos de la categoría a los controles de la interfaz
+            lblCategoria.Text = categoria.Nombre;
+            lblDescripcion.Text = categoria.Descripcion;
         }
         private void CargarNominados(int indice)
         {
-            ENNominados nominado1 = new ENNominados();
-            ENNominados nominado2 = new ENNominados();
-            ENNominados nominado3 = new ENNominados();
+            ENNominados nominados = new ENNominados();
 
-            nominado1.ObtenerNominado((indice + 1));
-            nominado2.ObtenerNominado((indice + 2));
-            nominado3.ObtenerNominado((indice + 3));
+            nominados.CategoriaId = (indice + 1).ToString();
+            DataSet dsNominados = nominados.ListaNominados();
 
-            // Asignar los datos de los nominados a los controles de la interfaz
-        }
-        protected void BotonSeleccion_Click(object sender, EventArgs e)
-        {
-            Button btnSeleccionado = (Button)sender;
-            int nominadoId = Convert.ToInt32(btnSeleccionado.CommandArgument);
-
-            Session["nominadoSeleccionado"] = nominadoId;
-
-            //btnSeleccion.Visible = true;
-            //glowBordes.Visible = true;
+            rptNominados.DataSource = dsNominados.Tables[0];
+            rptNominados.DataBind();
         }
         protected void BotonContinuar_Click(object sender, EventArgs e)
         {
@@ -119,16 +100,15 @@ namespace web
             }
 
             int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
-            int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
-            int? nominadoSeleccionadoId = Session["nominadoSeleccionado"] as int?;
+            int nominadoSeleccionadoId;
 
-            if (nominadoSeleccionadoId.HasValue)
+            if (!string.IsNullOrEmpty(hdnNominadoSeleccionado.Value) && int.TryParse(hdnNominadoSeleccionado.Value, out nominadoSeleccionadoId))
             {
                 ENVotaciones voto = new ENVotaciones
                 {
                     DiscordId = Usuario.IdDiscord,
                     CategoriaId = (indiceCategoriaActual + 1),
-                    NominadoId = (int)nominadoSeleccionadoId
+                    NominadoId = nominadoSeleccionadoId
                 };
 
                 if (!voto.AgregarVoto())
@@ -147,16 +127,13 @@ namespace web
             }
 
             indiceCategoriaActual++;
-            indiceNominadoActual += 3;
 
             Session["indiceCategorias"] = indiceCategoriaActual;
-            Session["indiceNominados"] = indiceNominadoActual;
             Session["nominadoSeleccionado"] = null;
 
-            CargarCategorias(indiceCategoriaActual);
-            CargarNominados(indiceNominadoActual);
+            CargarDatos();
 
-            //updtPnl.Update();
+            updtVotaciones.Update();
         }
         protected void BotonAnterior_Click(object sender, EventArgs e)
         {
@@ -167,36 +144,28 @@ namespace web
             }
 
             int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? 0;
-            int indiceNominadoActual = Session["indiceNominados"] as int? ?? 0;
 
             indiceCategoriaActual--;
-            indiceNominadoActual -= 3;
 
             ENVotaciones votoTemp = new ENVotaciones();
-            int nominadoVotadoId;
+            int nominadoVotadoId = 0;
 
             if (votoTemp.ObtenerVoto(Usuario.IdDiscord, (indiceCategoriaActual + 1)))
             {
                 nominadoVotadoId = votoTemp.NominadoId;
             }
-            else
+
+            if (!votoTemp.EliminarVoto())
             {
                 return;
             }
 
-            Session["nominadoSeleccionado"] = nominadoVotadoId;
+            Session["nominadoSeleccionado"] = null;
             Session["indiceCategorias"] = indiceCategoriaActual;
-            Session["indiceNominados"] = indiceNominadoActual;
 
-            CargarCategorias(indiceCategoriaActual);
-            CargarNominados(indiceNominadoActual);
+            CargarDatos();
 
-            //updtPnl.Update();
-        }
-        protected void BtnContinuar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ResumenVotos.aspx");
-            //Response.Redirect("GraciasPorVotar.aspx");
+            updtVotaciones.Update();
         }
     }
 }

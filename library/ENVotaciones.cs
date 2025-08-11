@@ -57,7 +57,7 @@ namespace library
         public int ObtenerTotalVotos()
         {
             CADVotaciones cad = new CADVotaciones();
-            return cad.ObtenerTotalVotos();
+            return cad.ObtenerTotalVotos(this);
         }
     }
 }

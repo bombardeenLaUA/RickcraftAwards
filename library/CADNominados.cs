@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,15 @@ namespace library
         public CADNominados()
         {
             constring = System.Configuration.ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+        }
+        public DataSet ListaNominados(ENNominados en)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection con = new SqlConnection(constring);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT NominadoId, Nombre, CategoriaId, ImagenUrl FROM Nominados WHERE CategoriaId = @categoriaId", con);
+            da.SelectCommand.Parameters.AddWithValue("@categoriaId", en.CategoriaId);
+            da.Fill(ds, "Nominados");
+            return ds;
         }
         public bool ObtenerNominado(int id, ENNominados nominado)
         {
@@ -34,7 +44,7 @@ namespace library
                     nominado.NominadoId = Convert.ToInt32(reader["NominadoId"]);
                     nominado.Nombre = reader["Nombre"].ToString();
                     nominado.CategoriaId = reader["CategoriaId"].ToString();
-                    nominado.ImageURL = "files/nominados/nominado{id}.png";
+                    nominado.ImagenURL = "files/nominados/nominado{id}.png";
                     check = true;
                 }
             }

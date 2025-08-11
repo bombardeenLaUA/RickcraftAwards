@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,27 @@ namespace library
                 con.Close();
             }
             return check;
+        }
+        public DataTable ListaCategorias()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection(constring);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT CategoriaId, Nombre FROM Categorias", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al conectar a la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return dt;
         }
     }
 }
