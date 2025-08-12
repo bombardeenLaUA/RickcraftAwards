@@ -58,7 +58,45 @@ namespace web
         }
         private void CargarDatos()
         {
-            int indiceCategoriaActual = Session["indiceCategorias"] as int? ?? Usuario.VotosUsuario();
+            int? sessionIndex = Session["indiceCategorias"] as int?;
+            int indiceCategoriaActual;
+
+            if (sessionIndex.HasValue)
+            {
+                indiceCategoriaActual = sessionIndex.Value;
+            }
+            else
+            {
+                indiceCategoriaActual = 0;
+
+                try
+                {
+                    ENVotaciones votos = new ENVotaciones();
+                    DataSet dsVotos = votos.NominadosSeleccionadosPorElUsuario(Usuario.IdDiscord);
+
+                    if (dsVotos != null && dsVotos.Tables.Count > 0 && dsVotos.Tables[0].Rows.Count > 0)
+                    {
+                        DataTable dt = dsVotos.Tables[0];
+                        int maxCategoriaId = 0;
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            if (row["CategoriaId"] != null && int.TryParse(row["CategoriaId"].ToString(), out int cid))
+                            {
+                                if (cid > maxCategoriaId) maxCategoriaId = cid;
+                            }
+                        }
+
+                        indiceCategoriaActual = maxCategoriaId;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error leyendo votos usuario: " + ex.Message);
+                    indiceCategoriaActual = 0;
+                }
+            }
+
             Session["indiceCategorias"] = indiceCategoriaActual;
 
             btnAnterior.Visible = indiceCategoriaActual > 0;

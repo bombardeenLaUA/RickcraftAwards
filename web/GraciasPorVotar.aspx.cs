@@ -10,7 +10,6 @@ namespace web
 {
     public partial class GraciasPorVotar : System.Web.UI.Page
     {
-        public ENUsuarios Usuario => Session["Usuario"] as ENUsuarios;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
