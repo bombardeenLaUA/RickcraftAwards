@@ -74,36 +74,36 @@
     <Content Include="App_Data\BaseDeDatos_log.ldf">
       <DependentUpon>BaseDeDatos.mdf</DependentUpon>
     </Content>
-    <Content Include="files\fondo puente.mp4" />
-    <Content Include="files\fondo resumen.mp4" />
-    <Content Include="files\GraciasPorVotar.mp4" />
-    <Content Include="files\minecraft-dungeons.3840x2160.mp4" />
-    <Content Include="files\nominados\aleexlpzz.png" />
-    <Content Include="files\nominados\antooonio.png" />
-    <Content Include="files\nominados\davito_03.png" />
-    <Content Include="files\nominados\hugotee.png" />
-    <Content Include="files\nominados\ImAlvaroX.png" />
-    <Content Include="files\nominados\JonyPro22.png" />
-    <Content Include="files\nominados\LaCafe_deMadison.png" />
-    <Content Include="files\nominados\n1k0hz.png" />
-    <Content Include="files\nominados\pain.png" />
-    <Content Include="files\nominados\pekekyle.png" />
-    <Content Include="files\nominados\pyo.png" />
-    <Content Include="files\nominados\Scorodite.png" />
-    <Content Include="files\nominados\SrDavo22.png" />
-    <Content Include="files\nominados\xuurrytaa.png" />
-    <Content Include="files\nominados\yeyolinux.png" />
-    <Content Include="files\nominados\zeri.png" />
-    <Content Include="files\noseleccionado.png" />
-    <Content Include="files\rickcraft.ico" />
-    <Content Include="files\titulo.png" />
-    <Content Include="files\usuario.png" />
     <Content Include="GraciasPorVotar.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="LoginDiscord.aspx" />
     <Content Include="ResumenVotos.aspx" />
     <Content Include="Votaciones.aspx" />
     <Content Include="Web.config" />
+    <Content Include="wwwroot\files\fondo puente.mp4" />
+    <Content Include="wwwroot\files\fondo resumen.mp4" />
+    <Content Include="wwwroot\files\GraciasPorVotar.mp4" />
+    <Content Include="wwwroot\files\minecraft-dungeons.3840x2160.mp4" />
+    <Content Include="wwwroot\files\nominados\aleexlpzz.png" />
+    <Content Include="wwwroot\files\nominados\antooonio.png" />
+    <Content Include="wwwroot\files\nominados\davito_03.png" />
+    <Content Include="wwwroot\files\nominados\hugotee.png" />
+    <Content Include="wwwroot\files\nominados\ImAlvaroX.png" />
+    <Content Include="wwwroot\files\nominados\JonyPro22.png" />
+    <Content Include="wwwroot\files\nominados\LaCafe_deMadison.png" />
+    <Content Include="wwwroot\files\nominados\n1k0hz.png" />
+    <Content Include="wwwroot\files\nominados\pain.png" />
+    <Content Include="wwwroot\files\nominados\pekekyle.png" />
+    <Content Include="wwwroot\files\nominados\pyo.png" />
+    <Content Include="wwwroot\files\nominados\Scorodite.png" />
+    <Content Include="wwwroot\files\nominados\SrDavo22.png" />
+    <Content Include="wwwroot\files\nominados\xuurrytaa.png" />
+    <Content Include="wwwroot\files\nominados\yeyolinux.png" />
+    <Content Include="wwwroot\files\nominados\zeri.png" />
+    <Content Include="wwwroot\files\noseleccionado.png" />
+    <Content Include="wwwroot\files\rickcraft.ico" />
+    <Content Include="wwwroot\files\titulo.png" />
+    <Content Include="wwwroot\files\usuario.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GraciasPorVotar.aspx.cs">
@@ -151,9 +151,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="files\fonts\Minecrafter.Reg.ttf" />
-    <Content Include="files\fonts\Minecraft.ttf" />
-    <Content Include="files\fonts\Minecrafter.Alt.ttf" />
     <None Include="packages.config" />
     <Content Include="Page.Master" />
     <None Include="Web.Debug.config">
@@ -162,6 +159,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="wwwroot\files\fonts\Minecraft.ttf" />
+    <Content Include="wwwroot\files\fonts\Minecrafter.Alt.ttf" />
+    <Content Include="wwwroot\files\fonts\Minecrafter.Reg.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\library\library.csproj">

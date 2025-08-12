@@ -422,7 +422,7 @@
                 <asp:Repeater ID="rptNominados" runat="server">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkBtnNominado" runat="server" CssClass="candidato" OnClientClick="seleccionarCandidato(this); return false;" data-nominado-id='<%# Eval("NominadoId") %>'>
-                            <asp:Image ID="imgNominado" runat="server" CssClass="candidato-img" AlternateText="Nominado" ImageUrl='<%# Eval("ImagenURL") %>'/>
+                            <asp:Image ID="imgNominado" runat="server" CssClass="candidato-img" AlternateText="Nominado" ImageUrl='<%# Eval("wwwroot/" + "ImagenURL") %>'/>
                             <asp:Label ID="lblNominado" runat="server" CssClass="candidato-nombre" Text='<%# Eval("Nombre") %>'></asp:Label>
                             <div class="candidato-boton">Elegir</div>
                         </asp:LinkButton>
