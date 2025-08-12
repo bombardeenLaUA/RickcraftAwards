@@ -70,9 +70,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BaseDeDatos.mdf" />
-    <Content Include="App_Data\BaseDeDatos_log.ldf">
-      <DependentUpon>BaseDeDatos.mdf</DependentUpon>
+    <Content Include="App_Data\BaseDeDatosRCA.mdf" />
+    <Content Include="App_Data\BaseDeDatosRCA_log.ldf">
+      <DependentUpon>BaseDeDatosRCA.mdf</DependentUpon>
     </Content>
     <Content Include="GraciasPorVotar.aspx" />
     <Content Include="Inicio.aspx" />
