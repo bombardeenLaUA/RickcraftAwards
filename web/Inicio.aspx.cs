@@ -44,20 +44,12 @@ namespace web
             }
             else
             {
-                if (Session["VotacionFinalizada"] != null)
+                if (Usuario.VotacionHecha())
                 {
-                    if (Session["VotacionFinalizada"] != null && (bool)Session["VotacionFinalizada"])
-                    {
-                        Response.Redirect("GraciasPorVotar.aspx");
-                    }
-                    else
-                    {
-                        Response.Redirect("Votaciones.aspx");
-                    }
+                    Response.Redirect("GraciasPorVotar.aspx");
                 }
                 else
                 {
-                    Session["VotacionFinalizada"] = false;
                     Response.Redirect("Votaciones.aspx");
                 }
             }
@@ -67,7 +59,6 @@ namespace web
             Session.Remove("CorregirDesdeResumen");
             Session.Remove("CategoriaACorregir");
             Session.Remove("indiceCategorias");
-            Session.Remove("VotacionFinalizada");
             ENVotaciones votos = new ENVotaciones();
             votos.EliminarTODO();
             votos.Resetear();

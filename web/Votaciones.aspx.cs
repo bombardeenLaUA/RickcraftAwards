@@ -25,18 +25,18 @@ namespace web
                     if (usuarioRecuperado != null)
                     {
                         Session["Usuario"] = usuarioRecuperado;
+                        if (usuarioRecuperado.VotacionFinalizada)
+                        {
+                            Response.Redirect("GraciasPorVotar.aspx");
+                            return;
+                        }
                     }
                 }
 
-                if (Session["VotacionFinalizada"] != null && (bool)Session["VotacionFinalizada"])
+                if (Usuario.VotacionFinalizada)
                 {
                     Response.Redirect("GraciasPorVotar.aspx");
                     return;
-                }
-
-                if (Session["VotacionFinalizada"] == null)
-                {
-                    Session["VotacionFinalizada"] = false;
                 }
 
                 if (Session["CorregirDesdeResumen"] != null && (bool)Session["CorregirDesdeResumen"])

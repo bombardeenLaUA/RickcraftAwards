@@ -27,10 +27,14 @@ namespace web
                     if (usuarioRecuperado != null)
                     {
                         Session["Usuario"] = usuarioRecuperado;
+                        if (usuarioRecuperado.VotacionHecha())
+                        {
+                            Response.Redirect("GraciasPorVotar.aspx");
+                        }
                     }
                 }
 
-                if (Session["VotacionFinalizada"] != null && (bool)Session["VotacionFinalizada"])
+                if (Usuario.VotacionHecha())
                 {
                     Response.Redirect("GraciasPorVotar.aspx");
                     return;
@@ -135,7 +139,7 @@ namespace web
                 return;
             }
 
-            Session["VotacionFinalizada"] = true;
+            Usuario.MarcarVotacionFinalizada();
             Response.Redirect("GraciasPorVotar.aspx");
         }
     }

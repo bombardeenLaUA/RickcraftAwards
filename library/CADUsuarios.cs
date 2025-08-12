@@ -72,7 +72,8 @@ namespace library
                     usuario = new ENUsuarios
                     {
                         IdDiscord = reader["DiscordId"].ToString(),
-                        Nombre = reader["Nombre"].ToString()
+                        Nombre = reader["Nombre"].ToString(),
+                        VotacionFinalizada = Convert.ToBoolean(reader["VotacionFinalizada"])
                     };
                 }
             }
@@ -109,6 +110,59 @@ namespace library
                 con.Close();
             }
             return count;
+        }
+        public bool VotacionHecha(ENUsuarios en)
+        {
+            bool check = false;
+            SqlConnection con = new SqlConnection(constring);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT VotacionFinalizada FROM Usuarios WHERE DiscordId = @discord_id", con);
+                cmd.Parameters.AddWithValue("@discord_id", en.IdDiscord);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    check = Convert.ToBoolean(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al verificar si la votación está finalizada: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return check;
+        }
+        public bool MarcarVotacionFinalizada(ENUsuarios en)
+        {
+            bool resultado = false;
+            SqlConnection con = new SqlConnection(constring);
+
+            try
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET VotacionFinalizada = 1 WHERE DiscordId = @discord_id", con);
+                cmd.Parameters.AddWithValue("@discord_id", en.IdDiscord);
+
+                resultado = cmd.ExecuteNonQuery() > 0;
+                if (resultado)
+                {
+                    en.VotacionFinalizada = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al marcar votación como finalizada: " + ex.Message);
+            }
+            return resultado;
         }
     }
 }

@@ -23,6 +23,10 @@ namespace web
                     if (usuarioRecuperado != null)
                     {
                         Session["Usuario"] = usuarioRecuperado;
+                        if (!usuarioRecuperado.VotacionHecha())
+                        {
+                            usuarioRecuperado.MarcarVotacionFinalizada();
+                        }
                     }
                 }
 

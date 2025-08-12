@@ -20,6 +20,12 @@ namespace library
             get { return _nombre; }
             set { _nombre = value; }
         }
+        private bool _votacionFinalizada;
+        public bool VotacionFinalizada
+        {
+            get { return _votacionFinalizada; }
+            set { _votacionFinalizada = value; }
+        }
         private string _avatarHash;
         public string AvatarHash
         {
@@ -46,6 +52,16 @@ namespace library
         {
             CADUsuarios cad = new CADUsuarios();
             return cad.VotosUsuario(this);
+        }
+        public bool VotacionHecha()
+        {
+            CADUsuarios cad = new CADUsuarios();
+            return cad.VotacionHecha(this);
+        }
+        public bool MarcarVotacionFinalizada()
+        {
+            CADUsuarios cad = new CADUsuarios();
+            return cad.MarcarVotacionFinalizada(this);
         }
     }
 }
