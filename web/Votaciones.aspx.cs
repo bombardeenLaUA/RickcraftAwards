@@ -25,7 +25,7 @@ namespace web
                     if (usuarioRecuperado != null)
                     {
                         Session["Usuario"] = usuarioRecuperado;
-                        if (usuarioRecuperado.VotacionFinalizada)
+                        if (usuarioRecuperado.VotacionHecha())
                         {
                             Response.Redirect("GraciasPorVotar.aspx");
                             return;

@@ -54,14 +54,5 @@ namespace web
                 }
             }
         }
-        protected void BotonReiniciar_Click(object sender, EventArgs e)
-        {
-            Session.Remove("CorregirDesdeResumen");
-            Session.Remove("CategoriaACorregir");
-            Session.Remove("indiceCategorias");
-            ENVotaciones votos = new ENVotaciones();
-            votos.EliminarTODO();
-            votos.Resetear();
-        }
     }
 }
