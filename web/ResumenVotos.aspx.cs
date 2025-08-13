@@ -83,14 +83,14 @@ namespace web
                     {
                         lblNombre.Text = nominado.Nombre;
 
-                        string imagePath = $"~/wwroot/{nominado.ImagenURL}";
+                        string imagePath = $"~/{nominado.ImagenURL}";
                         imgNominado.ImageUrl = Page.ResolveUrl(imagePath);
 
                         string physicalPath = Server.MapPath(imagePath);
                         if (!System.IO.File.Exists(physicalPath))
                         {
                             lblNombre.Text = "Archivo no encontrado";
-                            imgNominado.ImageUrl = Page.ResolveUrl("~/wwroot/files/noseleccionado.png");
+                            imgNominado.ImageUrl = Page.ResolveUrl("~/files/noseleccionado.png");
                         }
                         else
                         {
@@ -100,14 +100,14 @@ namespace web
                     else
                     {
                         lblNombre.Text = "Error";
-                        imgNominado.ImageUrl = Page.ResolveUrl("~/wwroot/files/noseleccionado.png");
+                        imgNominado.ImageUrl = Page.ResolveUrl("~/files/noseleccionado.png");
                         imgNominado.AlternateText = "Error";
                     }
                 }
                 else
                 {
                     lblNombre.Text = "No seleccionado";
-                    imgNominado.ImageUrl = Page.ResolveUrl("~/wwroot/files/noseleccionado.png");
+                    imgNominado.ImageUrl = Page.ResolveUrl("~/files/noseleccionado.png");
                     imgNominado.AlternateText = "No seleccionado";
                 }
             }
