@@ -35,10 +35,14 @@ namespace web
             if (Usuario == null)
             {
                 Session["LoginOrigen"] = "Votaciones";
+
                 string clientId = "1379599717624713318";
-                string redirectUri = HttpUtility.UrlEncode("https://www.rickcraftawards.com/LoginDiscord.aspx");
+                string redirectUri = "https://www.rickcraftawards.com/LoginDiscord.aspx";
                 string scope = "identify";
-                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
+
+                string encodedRedirectUri = HttpUtility.UrlEncode(redirectUri);
+
+                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={encodedRedirectUri}&response_type=code&scope={scope}";
 
                 Response.Redirect(url);
             }
@@ -54,5 +58,6 @@ namespace web
                 }
             }
         }
+
     }
 }

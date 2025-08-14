@@ -97,10 +97,16 @@ namespace web
             if (Usuario == null)
             {
                 Session["LoginOrigen"] = "Inicio";
+
                 string clientId = "1379599717624713318";
                 string redirectUri = "https://www.rickcraftawards.com/LoginDiscord.aspx";
                 string scope = "identify";
-                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope={scope}";
+
+                // Codificar el redirectUri para que sea válido en la URL
+                string encodedRedirectUri = HttpUtility.UrlEncode(redirectUri);
+
+                string url = $"https://discord.com/oauth2/authorize?client_id={clientId}&redirect_uri={encodedRedirectUri}&response_type=code&scope={scope}";
+
                 Response.Redirect(url);
             }
         }
