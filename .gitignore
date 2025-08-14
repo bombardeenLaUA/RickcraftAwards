@@ -42,3 +42,4 @@
 /web/obj/Release/web.dll
 /web/obj/Release/web.pdb
 /web/obj/Release/_WPPLastBuildInfo.txt
+/web/Properties/PublishProfiles/FTPProfile.pubxml
