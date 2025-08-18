@@ -30,3 +30,11 @@ project.lock.json
 _ReSharper*/
 *.resharper
 *.orig
+/web/obj/Release/AspnetCompileMerge/Source/Web.config
+/web/obj/Release/AspnetCompileMerge/Source/Web.config
+/web/obj/Release/AspnetCompileMerge/Source/Web.config
+/web/obj/Release/AspnetCompileMerge/TempBuildDir/Web.config
+/web/obj/Release/Package/PackageTmp/Web.config
+/web/obj/Release/TransformWebConfig/original/Web.config
+/web/obj/Release/TransformWebConfig/transformed/Web.config
+/web/obj/Release/AspnetCompileMerge/Source/Web.config
