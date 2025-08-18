@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -18,40 +19,41 @@ namespace library
         }
         public bool AgregarUsuario(string idDsc, string nombre)
         {
-            bool check = false;
-            SqlConnection con = new SqlConnection(constring);
-
-            try
+            using (SqlConnection con = new SqlConnection(constring))
             {
-                con.Open();
-
-                SqlCommand cmdCheck = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE DiscordId = @id_discord", con);
-                cmdCheck.Parameters.AddWithValue("@id_discord", idDsc);
-
-                int count = (int)cmdCheck.ExecuteScalar();
-
-                if (count == 0)
+                try
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (DiscordId, Nombre) VALUES (@id_discord, @nombre)", con);
-                    cmd.Parameters.AddWithValue("@id_discord", idDsc);
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    con.Open();
 
-                    check = cmd.ExecuteNonQuery() > 0;
+                    using (SqlCommand cmdCheck = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE DiscordId = @id_discord", con))
+                    {
+                        cmdCheck.Parameters.AddWithValue("@id_discord", idDsc);
+                        int count = (int)cmdCheck.ExecuteScalar();
+
+                        if (count > 0)
+                            return true;
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (DiscordId, Nombre) VALUES (@id_discord, @nombre)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id_discord", idDsc);
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.CommandTimeout = 30; // ⏱️ Añade timeout
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                   check = true;
+                    // 🔥 Usa logging real
+                    System.Diagnostics.Debug.WriteLine("Error AgregarUsuario: " + ex.Message);
+                    // O guarda en archivo
+                    System.IO.File.AppendAllText(
+                        HttpContext.Current.Server.MapPath("~/App_Data/error.log"),
+                        DateTime.Now + " - " + ex + Environment.NewLine
+                    );
+                    return false;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al agregar usuario: " + ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-            return check;
         }
         public ENUsuarios ObtenerUsuario(string idDiscord)
         {
